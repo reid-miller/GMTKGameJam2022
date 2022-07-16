@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://scenes/Enemy.gd"
+"path": "res://scripts/Enemy.gd"
 } ]
 _global_script_class_icons={
 "Enemy": ""
@@ -22,6 +22,15 @@ _global_script_class_icons={
 
 config/name="GMTKGameJam2022"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=640
+window/size/height=360
+window/size/test_width=1280
+window/size/test_height=720
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [physics]
 

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/Square.gd" type="Script" id=1]
+
+[node name="ColorRect" type="ColorRect"]
+margin_right = 60.0
+margin_bottom = 60.0
+script = ExtResource( 1 )
