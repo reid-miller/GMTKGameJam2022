@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Square.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player_chip.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://sprites/tile frame.png" type="Texture" id=4]
 [ext_resource path="res://scenes/room.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Board.gd" type="Script" id=6]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -150,3 +151,7 @@ scale = Vector2( 0.6, 0.6 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/zoom_in = SubResource( 2 )
 anims/zoom_out = SubResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 7 )]
+position = Vector2( 220, 145 )
+scale = Vector2( 0.6, 0.6 )
