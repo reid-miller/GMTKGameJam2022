@@ -69,6 +69,7 @@ shape = SubResource( 1 )
 [node name="PlayerBodySprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 3 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="PlayerEyesSprite" type="AnimatedSprite" parent="."]
@@ -77,13 +78,21 @@ frames = ExtResource( 2 )
 [node name="Weapon" type="Node2D" parent="."]
 
 [node name="WeaponSprite" type="Sprite" parent="Weapon"]
-position = Vector2( -5, 4.75926 )
-rotation = -2.39119
+position = Vector2( -5, 4.09236 )
+rotation = -2.50665
+scale = Vector2( 1, -1 )
 texture = ExtResource( 4 )
 offset = Vector2( 16.5082, 3.11086 )
 
-[node name="Hitboxes" type="Node2D" parent="Weapon"]
+[node name="Muzzle" type="Position2D" parent="Weapon/WeaponSprite"]
+
+[node name="ShootDirection" type="Position2D" parent="Weapon/WeaponSprite"]
+position = Vector2( -5, 0 )
+
+[node name="Hitboxes" type="Node2D" parent="Weapon/WeaponSprite"]
 visible = false
+position = Vector2( -0.0586395, 7.03951 )
+rotation = 2.36007
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/shoot = ExtResource( 8 )

@@ -2,6 +2,7 @@
 
 # Scenes
 var PlayerHitbox = preload("res://scenes/player_hitbox.tscn")
+var PlayerBullet = preload("res://scenes/player_bullet.tscn")
 
 # Nodes
 onready var body_sprite: AnimatedSprite = $PlayerBodySprite
@@ -9,7 +10,9 @@ onready var eyes_sprite: AnimatedSprite = $PlayerEyesSprite
 onready var animation_tree = $AnimationTree["parameters/playback"]
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var weapon: Node2D = $Weapon
-onready var hitboxes: Node2D = $Weapon/Hitboxes
+onready var muzzle: Position2D = $Weapon/WeaponSprite/Muzzle
+onready var shoot_position: Position2D = $Weapon/WeaponSprite/ShootDirection
+onready var hitboxes: Node2D = $Weapon/WeaponSprite/Hitboxes
 
 # Stats
 const BASE_MOVEMENT_SPEED: float = 75.0
@@ -22,6 +25,7 @@ var health: float = BASE_HEALTH
 var attack_speed: float = BASE_ATTACK_SPEED
 var damage: float = BASE_DAMAGE
 var knockback: float = BASE_KNOCKBACK
+var i_frames: int = 100
 
 # Animation Variables
 var blink_interval: float = 6
@@ -31,11 +35,15 @@ var velocity: Vector2 = Vector2.ZERO
 var can_move: bool = true
 var can_attack: bool = true
 var can_shoot: bool = true
+var remaining_iframes: int = 0
+
+# Signals
+signal player_died
 
 func _ready() -> void:
 	
 	Globals.player_scene = self
-	
+
 	# Setup blink timer
 	var blink_timer: Timer = Timer.new()
 	add_child(blink_timer)
@@ -43,11 +51,13 @@ func _ready() -> void:
 	blink_timer.connect("timeout", self, "_blink")
 	blink_timer.start()
 
+	
 
 func _physics_process(delta: float) -> void:
 	_move()
 	_handle_player_animations()
 	_handle_weapon_animations()
+	_handle_player_damage()
 
 
 func _handle_player_animations():
@@ -70,6 +80,14 @@ func _handle_player_animations():
 	else:
 		eyes_sprite.offset.y = 0
 
+	# Iframes
+	if remaining_iframes > 0:
+		remaining_iframes -= 1
+		if remaining_iframes % 5 == 0:
+			visible = !visible
+	else:
+		visible = true
+
 func _handle_weapon_animations() -> void:
 
 	# Idle
@@ -88,6 +106,7 @@ func _handle_weapon_animations() -> void:
 	elif can_shoot and Input.is_action_pressed("shoot") and animation_tree.get_current_node() == "weapon_bob":
 		animation_tree.travel("shoot")
 
+
 func _check_for_combo():
 	if Input.is_action_pressed("attack"):
 		weapon.look_at(get_viewport().get_mouse_position())
@@ -95,6 +114,15 @@ func _check_for_combo():
 			animation_tree.travel("swing_2")
 		elif animation_tree.get_current_node() == "swing_2":
 			animation_tree.travel("swing_1")
+
+
+func _handle_player_damage():
+	if Input.is_action_just_pressed("shoot") and remaining_iframes <= 0:
+		health -= 1
+		if health <= 0:
+			emit_signal("player_died")
+		else:
+			remaining_iframes = i_frames
 
 
 func _blink():
@@ -122,3 +150,13 @@ func _spawn_hitbox():
 	hitbox.damage = damage
 	hitbox.knockback = knockback
 	hitboxes.add_child(hitbox)
+
+
+func _spawn_bullet():
+	var bullet = PlayerBullet.instance()
+	bullet.global_position = muzzle.global_position
+	bullet.damage = damage
+	bullet.knockback = knockback
+	bullet.velocity = shoot_position.global_position - muzzle.global_position
+	get_parent().add_child(bullet)
+	
