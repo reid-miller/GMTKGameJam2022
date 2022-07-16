@@ -15,7 +15,7 @@ onready var hitboxes: Node2D = $Weapon/Hitboxes
 const BASE_MOVEMENT_SPEED: float = 75.0
 const BASE_HEALTH: float = 10.0
 const BASE_ATTACK_SPEED: float = 10.0
-const BASE_DAMAGE: float = 10.0
+const BASE_DAMAGE: float = 1.0
 const BASE_KNOCKBACK: float = 20.0
 var movement_speed: float = BASE_MOVEMENT_SPEED
 var health: float = BASE_HEALTH
@@ -25,8 +25,6 @@ var knockback: float = BASE_KNOCKBACK
 
 # Animation Variables
 var blink_interval: float = 6
-var start_blink: bool = false
-
 
 # Functional Variables
 var velocity: Vector2 = Vector2.ZERO
@@ -55,17 +53,22 @@ func _physics_process(delta: float) -> void:
 func _handle_player_animations():
 	
 	# Movement
-	if velocity != Vector2.ZERO:
-		body_sprite.playing = true
-	else:
-		body_sprite.playing = false
+	print(velocity)
+	if velocity != Vector2(0, 0) and body_sprite.animation != "moving":
+		body_sprite.animation = "moving"
+		body_sprite.frame = 0
+	elif velocity == Vector2(0,0) and body_sprite.animation != "idle":
+		body_sprite.animation = "idle"
 		body_sprite.frame = 0
 
 	# Blinking
 	if eyes_sprite.playing and eyes_sprite.frame == 6:
 		eyes_sprite.playing = false
 		eyes_sprite.frame = 0
-
+	if body_sprite.animation == "idle" and body_sprite.frame == 1:
+		eyes_sprite.offset.y = 2
+	else:
+		eyes_sprite.offset.y = 0
 
 func _handle_weapon_animations() -> void:
 
@@ -79,7 +82,7 @@ func _handle_weapon_animations() -> void:
 
 	# Attacking
 	if can_attack and animation_tree.get_current_node() == "weapon_bob" and Input.is_action_pressed("attack"):
-			animation_tree.travel("swing_1")
+		animation_tree.travel("swing_1")
 	
 	# Shooting
 	elif can_shoot and Input.is_action_pressed("shoot") and animation_tree.get_current_node() == "weapon_bob":
@@ -92,6 +95,7 @@ func _check_for_combo():
 			animation_tree.travel("swing_2")
 		elif animation_tree.get_current_node() == "swing_2":
 			animation_tree.travel("swing_1")
+
 
 func _blink():
 	eyes_sprite.playing = true
@@ -111,7 +115,8 @@ func _move() -> void:
 	# Move
 	velocity = input_vector.normalized() * movement_speed
 	move_and_slide(velocity)
-	
+
+
 func _spawn_hitbox():
 	var hitbox = PlayerHitbox.instance()
 	hitbox.damage = damage
