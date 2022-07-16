@@ -17,12 +17,12 @@ func change_square():
 	print_debug(rand_num)
 	# Red
 	if 0 < rand_num and rand_num < 6:
-		color = Color(1, 0, 0, 1)
+		color = Color8(222, 42, 29)
 	# Green
 	elif 6 < rand_num and rand_num > 9:
-		color = Color(0, 1, 0, 1)
+		color = Color8(127, 166, 70)
 	else:
-		color = Color(1, 1, .5, 1)
+		color = Color8(242, 170, 107)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
