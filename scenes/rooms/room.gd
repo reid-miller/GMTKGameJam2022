@@ -4,25 +4,26 @@ extends Node2D
 # Declare member variables here. Examples:
 var ZOOM_SPEED = .5
 var zoom = false
-# var b = "text"
+var zoom_amount = 1
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass 
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if zoom_amount > 1:
+		zoom_amount = 1
+	if zoom_amount < 0:
+		zoom_amount = 0
 	if zoom and scale.x < 1:
-		scale.x += ZOOM_SPEED * delta
-		scale.y += ZOOM_SPEED * delta
-	elif !zoom and scale.x > .6:
-		scale.x -= ZOOM_SPEED * delta
-		scale.y -= ZOOM_SPEED * delta
-		
-		
+		scale.x = lerp(.6, 1, zoom_amount)
+		scale.y = lerp(.6, 1, zoom_amount)
+		zoom_amount += delta
+	elif  !zoom and scale.x > 0.6:
+		scale.x = lerp(1, .6, zoom_amount)
+		scale.y = lerp(1, .6, zoom_amount)
+		zoom_amount += delta
+
 		
 	if Input.is_action_just_released("ui_accept"):
 		zoom = !zoom
-		print_debug(zoom)
+		zoom_amount = 0

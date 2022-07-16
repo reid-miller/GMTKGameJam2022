@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Square.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player_chip.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/BoardPath.gd" type="Script" id=3]
-[ext_resource path="res://scenes/game_camera.gd" type="Script" id=4]
 [ext_resource path="res://scenes/rooms/room.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Curve2D" id=1]
@@ -13,12 +12,12 @@ _data = {
 
 [node name="Board" type="Node2D"]
 
-[node name="Button2" type="Button" parent="."]
-margin_left = 222.0
-margin_top = 167.0
-margin_right = 358.0
-margin_bottom = 237.0
-text = "Zoom"
+[node name="Button" type="Button" parent="."]
+margin_left = 221.0
+margin_top = 81.0
+margin_right = 350.0
+margin_bottom = 143.0
+text = "Roll"
 
 [node name="Squares" type="Node2D" parent="."]
 
@@ -85,22 +84,9 @@ rotate = false
 position = Vector2( -1, 1 )
 scale = Vector2( 10, 10 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2( 320, 180 )
-current = true
-script = ExtResource( 4 )
-
 [node name="room_1" parent="." instance=ExtResource( 5 )]
 position = Vector2( 319, 179 )
 scale = Vector2( 0.6, 0.6 )
 
-[node name="Button" type="Button" parent="."]
-margin_left = 221.0
-margin_top = 81.0
-margin_right = 350.0
-margin_bottom = 143.0
-text = "Roll"
-
-[connection signal="button_up" from="Button2" to="Camera2D" method="_on_Button2_button_up"]
 [connection signal="button_down" from="Button" to="BoardPath" method="_on_Button_button_down"]
 [connection signal="button_down" from="Button" to="BoardPath/PathFollow2D/player_chip" method="_on_Button_button_down"]
