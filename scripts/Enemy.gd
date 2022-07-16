@@ -24,7 +24,10 @@ func _physics_process(delta):
 			knockback_vector = Vector2.ZERO
 		else:
 			knockback_vector -= knockback_vector.normalized() * knockback_decay
-
+	
+	# Check if dead
+	if health <= 0:
+		queue_free()
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
