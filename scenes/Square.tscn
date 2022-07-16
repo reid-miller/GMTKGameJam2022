@@ -7,14 +7,14 @@
 [node name="Outline" type="ColorRect" parent="."]
 margin_left = -1.0
 margin_top = -1.0
-margin_right = 59.0
-margin_bottom = 59.0
+margin_right = 127.0
+margin_bottom = 71.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Square" type="ColorRect" parent="."]
-margin_right = 58.0
-margin_bottom = 58.0
+margin_right = 126.0
+margin_bottom = 70.0
 script = ExtResource( 1 )
