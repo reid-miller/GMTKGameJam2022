@@ -8,6 +8,7 @@ var health = 2
 var knockback_vector = Vector2.ZERO
 var speed = 10
 var knockback_decay = 5
+var dir
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,7 +16,7 @@ func _ready():
 
 func _physics_process(delta):
 
-	var dir = (player.global_position - global_position).normalized()
+	dir = (player.global_position - global_position).normalized()
 	move_and_collide((dir * speed * delta) + knockback_vector)
 	
 	# Decay Knockback
