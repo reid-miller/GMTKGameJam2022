@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "Dime",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "Quarter",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "Nickle",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "Penny",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+
+[node name="Enemy_Coin" type="KinematicBody2D"]
+
+[node name="CoinSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Penny"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
