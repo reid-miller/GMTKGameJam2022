@@ -22,23 +22,20 @@ func _process(delta):
 	# Done moving
 	elif abs($PathFollow2D.offset - BOARD_POS[pos]) < 10 and moving:
 		moving = false
-		Globals.board.new_room()
-		Globals.board.zoom_in()
+		Globals.board.new_room(pos)
+		var timer = Timer.new()
+		add_child(timer)
+		timer.connect("timeout", Globals.board, 'zoom_in')
+		timer.wait_time = 1
+		timer.one_shot = true
+		timer.start()
 		pass
 		
-
-func _on_Button_button_down():
-	rng.randomize()
-	var rand_num = int(round(rng.randf() * 6.0))
-	if pos + rand_num > BOARD_SIZE:
-		pos = (pos + rand_num) - BOARD_SIZE
-	else:
-		pos += rand_num
 		
 func roll_dice():
 	Globals.board.change_tile(pos)
 	rng.randomize()
-	var rand_num = int(round(rng.randf() * 6.0))
+	var rand_num = rng.randi_range(1, 6)
 	if pos + rand_num > BOARD_SIZE:
 		pos = (pos + rand_num) - BOARD_SIZE
 	else:

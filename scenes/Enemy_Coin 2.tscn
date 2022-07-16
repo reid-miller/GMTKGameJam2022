@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Enemy_Coin.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Coins/quarter face.png" type="Texture" id=2]
@@ -7,8 +7,6 @@
 [ext_resource path="res://sprites/Coins/dime face.png" type="Texture" id=5]
 [ext_resource path="res://sprites/Coins/nickle face.png" type="Texture" id=6]
 [ext_resource path="res://sprites/Coins/thick nickle.png" type="Texture" id=7]
-[ext_resource path="res://sprites/Coins/penny face.png" type="Texture" id=8]
-[ext_resource path="res://sprites/Coins/thick penny.png" type="Texture" id=9]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -62,86 +60,6 @@ region = Rect2( 352, 0, 32, 36 )
 atlas = ExtResource( 2 )
 region = Rect2( 384, 0, 32, 36 )
 
-[sub_resource type="AtlasTexture" id=49]
-atlas = ExtResource( 8 )
-region = Rect2( 0, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=50]
-atlas = ExtResource( 8 )
-region = Rect2( 32, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=51]
-atlas = ExtResource( 8 )
-region = Rect2( 64, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=52]
-atlas = ExtResource( 8 )
-region = Rect2( 96, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=53]
-atlas = ExtResource( 8 )
-region = Rect2( 128, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=54]
-atlas = ExtResource( 8 )
-region = Rect2( 160, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=55]
-atlas = ExtResource( 8 )
-region = Rect2( 192, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=56]
-atlas = ExtResource( 8 )
-region = Rect2( 224, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=57]
-atlas = ExtResource( 8 )
-region = Rect2( 256, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=58]
-atlas = ExtResource( 8 )
-region = Rect2( 288, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=59]
-atlas = ExtResource( 8 )
-region = Rect2( 320, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=60]
-atlas = ExtResource( 8 )
-region = Rect2( 352, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=61]
-atlas = ExtResource( 8 )
-region = Rect2( 384, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=62]
-atlas = ExtResource( 8 )
-region = Rect2( 416, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=63]
-atlas = ExtResource( 8 )
-region = Rect2( 448, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=64]
-atlas = ExtResource( 8 )
-region = Rect2( 480, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=65]
-atlas = ExtResource( 8 )
-region = Rect2( 512, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=66]
-atlas = ExtResource( 8 )
-region = Rect2( 544, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=47]
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=48]
-atlas = ExtResource( 7 )
-region = Rect2( 32, 0, 32, 36 )
-
 [sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 32, 36 )
@@ -153,6 +71,14 @@ region = Rect2( 32, 0, 32, 36 )
 [sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 3 )
 region = Rect2( 64, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 0, 32, 36 )
 
 [sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 5 )
@@ -230,20 +156,12 @@ region = Rect2( 544, 0, 32, 36 )
 atlas = ExtResource( 5 )
 region = Rect2( 576, 0, 32, 36 )
 
-[sub_resource type="AtlasTexture" id=42]
-atlas = ExtResource( 4 )
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 32, 36 )
 
-[sub_resource type="AtlasTexture" id=43]
-atlas = ExtResource( 4 )
-region = Rect2( 32, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=67]
-atlas = ExtResource( 9 )
-region = Rect2( 0, 0, 32, 36 )
-
-[sub_resource type="AtlasTexture" id=68]
-atlas = ExtResource( 9 )
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 7 )
 region = Rect2( 32, 0, 32, 36 )
 
 [sub_resource type="AtlasTexture" id=44]
@@ -260,48 +178,39 @@ region = Rect2( 64, 0, 32, 36 )
 
 [sub_resource type="SpriteFrames" id=14]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
-"loop": true,
-"name": "Quarter",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ) ],
+"frames": [  ],
 "loop": true,
 "name": "Penny",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 47 ), SubResource( 48 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
 "loop": true,
-"name": "NickleButt",
-"speed": 3.0
+"name": "Quarter",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
 "loop": true,
 "name": "QuarterButt",
 "speed": 3.0
 }, {
-<<<<<<< Updated upstream
-"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ) ],
-=======
-"frames": [ SubResource( 44 ), SubResource( 45 ), SubResource( 46 ) ],
-"loop": true,
-"name": "Nickle",
-"speed": 5.0
-}, {
-"frames": [  ],
->>>>>>> Stashed changes
-"loop": true,
-"name": "Dime",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 42 ), SubResource( 43 ) ],
 "loop": true,
 "name": "DimeButt",
 "speed": 3.0
 }, {
-"frames": [ SubResource( 67 ), SubResource( 68 ) ],
+"frames": [  ],
 "loop": true,
 "name": "PennyButt",
+"speed": 3.0
+}, {
+"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ) ],
+"loop": true,
+"name": "Dime",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 47 ), SubResource( 48 ) ],
+"loop": true,
+"name": "NickleButt",
 "speed": 3.0
 }, {
 "frames": [ SubResource( 44 ), SubResource( 45 ), SubResource( 46 ) ],
