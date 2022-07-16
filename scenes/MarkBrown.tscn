@@ -3,6 +3,7 @@
 [ext_resource path="res://sprites/Mark.jpeg" type="Texture" id=1]
 [ext_resource path="res://scripts/Mark.gd" type="Script" id=2]
 
+
 [node name="MarkBrown" type="Node2D"]
 
 [node name="Mark" type="Sprite" parent="."]
