@@ -72,6 +72,8 @@ tracks/1/keys = {
 }
 
 [node name="Board" type="Node2D"]
+position = Vector2( -212, -119 )
+scale = Vector2( 1.67, 1.67 )
 script = ExtResource( 6 )
 
 [node name="Squares" type="Node2D" parent="."]

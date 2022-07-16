@@ -23,6 +23,7 @@ func _process(delta):
 	elif abs($PathFollow2D.offset - BOARD_POS[pos]) < 10 and moving:
 		moving = false
 		Globals.board.new_room()
+		Globals.board.zoom_in()
 		pass
 		
 
