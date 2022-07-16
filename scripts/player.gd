@@ -68,7 +68,6 @@ func _physics_process(delta: float) -> void:
 func _handle_player_animations():
 	
 	# Movement
-	print(velocity)
 	if velocity != Vector2(0, 0) and body_sprite.animation != "moving":
 		body_sprite.animation = "moving"
 		body_sprite.frame = 0
