@@ -2,39 +2,46 @@ extends Enemy
 
 onready var enemy_sprite: AnimatedSprite = $CoinBodySprite
 onready var lap = Globals.lap
-var anims
+var anim
 var death_interval = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_determine_level()
 	if dir != Vector2.ZERO:
 		enemy_sprite.playing = true
 
 	
-	# Get animation names
-	anims = enemy_sprite.frames.get_animation_names()
-	
 func _physics_process(delta: float) -> void:
-
+	_animation_and_rotation()
 	_handle_death()
+
+func _animation_and_rotation():
+	var pos = player.global_position - global_position
 	
-	var pos = player.global_position - global_position	
 	# Handle butt animation
 	if pos.x > 0 and pos.y < 0:
-		enemy_sprite.animation = anims[lap]
+		enemy_sprite.animation = anim + "Butt"
 	else:
-		enemy_sprite.animation = anims[lap-1]
-
-
+		enemy_sprite.animation = anim
+		
 	# Change rotation direction
 	if pos.x > 0:
 		enemy_sprite.rotation += .08
 	else:
 		enemy_sprite.rotation -= .08
+	
 
-		
-	if health <= 0:
-		print("dead")
+func _determine_level():
+	if lap == 1:
+		enemy_sprite.animation = "Penny"
+	elif lap == 2:
+		enemy_sprite.animation = "Nickle"
+	elif lap == 3:
+		enemy_sprite.animation = "Dime"
+	elif lap >= 4:
+		enemy_sprite.animation = "Quarter"
+	anim = enemy_sprite.animation
 
 
 func _handle_death():
