@@ -3,6 +3,9 @@
 # Nodes
 onready var body_sprite: AnimatedSprite = $PlayerBodySprite
 onready var eyes_sprite: AnimatedSprite = $PlayerEyesSprite
+onready var animation_tree = $AnimationTree["parameters/playback"]
+onready var animation_player: AnimationPlayer = $AnimationPlayer
+onready var weapon: Node2D = $Weapon
 
 # Stats
 const BASE_MOVEMENT_SPEED: float = 50.0
@@ -19,9 +22,12 @@ var damage: float = BASE_DAMAGE
 var blink_interval: float = 6
 var start_blink: bool = false
 
+
 # Functional Variables
 var velocity: Vector2 = Vector2.ZERO
 var can_move: bool = true
+var can_attack: bool = true
+var can_shoot: bool = true
 
 func _ready() -> void:
 	
@@ -34,10 +40,11 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_move()
-	_handle_animations()
+	_handle_player_animations()
+	_handle_weapon_animations()
 
 
-func _handle_animations():
+func _handle_player_animations():
 	
 	# Movement
 	if velocity != Vector2.ZERO:
@@ -50,7 +57,33 @@ func _handle_animations():
 	if eyes_sprite.playing and eyes_sprite.frame == 6:
 		eyes_sprite.playing = false
 		eyes_sprite.frame = 0
-		
+
+
+func _handle_weapon_animations() -> void:
+
+	# Idle
+	if animation_tree.get_current_node() == "weapon_bob":
+		weapon.scale.y = 1
+		weapon.scale.x = 1
+		weapon.look_at(get_viewport().get_mouse_position())
+		if get_viewport().get_mouse_position().x < global_position.x:
+			weapon.scale.y = -1
+
+	# Attacking
+	if can_attack and animation_tree.get_current_node() == "weapon_bob" and Input.is_action_pressed("attack"):
+			animation_tree.travel("swing_1")
+	
+	# Shooting
+	elif can_shoot and Input.is_action_pressed("shoot") and animation_tree.get_current_node() == "weapon_bob":
+		animation_tree.travel("shoot")
+
+func _check_for_combo():
+	if Input.is_action_pressed("attack"):
+		weapon.look_at(get_viewport().get_mouse_position())
+		if animation_tree.get_current_node() == "swing_1":
+			animation_tree.travel("swing_2")
+		elif animation_tree.get_current_node() == "swing_2":
+			animation_tree.travel("swing_1")
 
 func _blink():
 	eyes_sprite.playing = true

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/craps rattan.png-8a181903f459a5fa9aba8a609d9f78ab.stex"
+path="res://.import/craps_rattan.png-97f29a6443ddd579ba1f9b0624affbd7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/craps rattan.png"
-dest_files=[ "res://.import/craps rattan.png-8a181903f459a5fa9aba8a609d9f78ab.stex" ]
+source_file="res://sprites/craps_rattan.png"
+dest_files=[ "res://.import/craps_rattan.png-97f29a6443ddd579ba1f9b0624affbd7.stex" ]
 
 [params]
 
