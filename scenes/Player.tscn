@@ -76,8 +76,8 @@ frames = ExtResource( 2 )
 [node name="Weapon" type="Node2D" parent="."]
 
 [node name="WeaponSprite" type="Sprite" parent="Weapon"]
-position = Vector2( -5, 4.81007 )
-rotation = -2.46873
+position = Vector2( -5, 4.73948 )
+rotation = -2.39433
 scale = Vector2( 1, -1 )
 texture = ExtResource( 4 )
 offset = Vector2( 16.5082, 3.11086 )
