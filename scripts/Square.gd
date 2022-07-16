@@ -1,4 +1,4 @@
-extends ColorRect
+extends Node2D
 
 
 # Declare member variables here. Examples:
@@ -17,12 +17,12 @@ func change_square():
 	print_debug(rand_num)
 	# Red
 	if 0 < rand_num and rand_num < 6:
-		color = Color8(222, 42, 29)
+		$Sprite.texture = load('res://sprites/red tile.png')
 	# Green
 	elif 6 < rand_num and rand_num > 9:
-		color = Color8(127, 166, 70)
+		$Sprite.texture = load('res://sprites/green tile.png')
 	else:
-		color = Color8(242, 170, 107)
+		$Sprite.texture = load('res://sprites/special tile.png')
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

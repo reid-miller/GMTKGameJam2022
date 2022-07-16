@@ -1,4 +1,4 @@
- extends KinematicBody2D
+extends KinematicBody2D
 
 # Scenes
 var PlayerHitbox = preload("res://scenes/player_hitbox.tscn")

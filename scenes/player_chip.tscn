@@ -1,10 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scenes/MarkBrown.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/player_chip.gd" type="Script" id=2]
+[ext_resource path="res://sprites/character board pawn.png" type="Texture" id=1]
 
-[node name="player_chip" type="Node2D"]
-script = ExtResource( 2 )
-
-[node name="MarkBrown" parent="." instance=ExtResource( 1 )]
-scale = Vector2( 0.001, 0.001 )
+[node name="player_chip" type="Sprite"]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 1 )

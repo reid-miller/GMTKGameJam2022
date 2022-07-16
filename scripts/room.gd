@@ -7,6 +7,7 @@ var zoom = false
 var zoom_amount = 1
 
 func _ready():
+	
 	pass 
 
 func _process(delta):
@@ -27,3 +28,8 @@ func _process(delta):
 	if Input.is_action_just_released("ui_accept"):
 		zoom = !zoom
 		zoom_amount = 0
+
+
+func _on_dice_roller_area_entered(area):
+	
+	pass # Replace with function body.
