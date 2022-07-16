@@ -126,6 +126,8 @@ visible = false
 scale = Vector2( 1, 1 )
 
 [node name="WeaponSprite" type="Sprite" parent="Weapon"]
+position = Vector2( -5, 4.56362 )
+rotation = -2.4222
 position = Vector2( -5, 5.88111 )
 rotation = -2.41215
 

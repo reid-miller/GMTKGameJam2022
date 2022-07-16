@@ -198,6 +198,7 @@ animations = [ {
 "name": "QuarterButt",
 "speed": 3.0
 }, {
+
 "frames": [ SubResource( 44 ), SubResource( 45 ), SubResource( 46 ) ],
 "loop": true,
 "name": "Nickle",

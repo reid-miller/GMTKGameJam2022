@@ -15,6 +15,7 @@ func _ready():
 	anims = enemy_sprite.frames.get_animation_names()
 	
 func _physics_process(delta: float) -> void:
+
 	_handle_death()
 	
 	var pos = player.global_position - global_position	
@@ -24,11 +25,17 @@ func _physics_process(delta: float) -> void:
 	else:
 		enemy_sprite.animation = anims[lap-1]
 
+
 	# Change rotation direction
 	if pos.x > 0:
 		enemy_sprite.rotation += .08
 	else:
 		enemy_sprite.rotation -= .08
+
+		
+	if health <= 0:
+		print("dead")
+
 
 func _handle_death():
 	var death_timer: Timer = Timer.new()

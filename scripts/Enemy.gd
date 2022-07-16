@@ -28,7 +28,11 @@ func _physics_process(delta):
 	
 	# Check if dead
 	if health <= 0:
+		print("dead")
+		Globals.dice_roller.check_room(true)
+		#queue_free()
 		speed = 0
+
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
