@@ -1,10 +1,63 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/animations/anim_player_eyes_blink.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://sprites/animations/anim_player_moving.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://sprites/craps_rattan.png" type="Texture" id=4]
+[ext_resource path="res://animations/player/swing_1.tres" type="Animation" id=5]
+[ext_resource path="res://animations/player/weapon_bob.tres" type="Animation" id=6]
+[ext_resource path="res://animations/player/swing_2.tres" type="Animation" id=7]
+[ext_resource path="res://animations/player/weapon_shot.tres" type="Animation" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "shoot"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "swing_1"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "swing_2"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "weapon_bob"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=6]
+resource_local_to_scene = true
+states/shoot/node = SubResource( 15 )
+states/shoot/position = Vector2( 90.75, 134.5 )
+states/swing_1/node = SubResource( 8 )
+states/swing_1/position = Vector2( 286, 38.4688 )
+states/swing_2/node = SubResource( 9 )
+states/swing_2/position = Vector2( 286.25, 136 )
+states/weapon_bob/node = SubResource( 3 )
+states/weapon_bob/position = Vector2( 90, 38.4375 )
+transitions = [ "weapon_bob", "swing_1", SubResource( 10 ), "swing_1", "swing_2", SubResource( 11 ), "swing_2", "swing_1", SubResource( 12 ), "swing_2", "weapon_bob", SubResource( 13 ), "swing_1", "weapon_bob", SubResource( 14 ), "weapon_bob", "shoot", SubResource( 16 ), "shoot", "weapon_bob", SubResource( 17 ) ]
+start_node = "weapon_bob"
+graph_offset = Vector2( -276, -8 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -18,3 +71,24 @@ frame = 8
 
 [node name="PlayerEyesSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 2 )
+
+[node name="Weapon" type="Node2D" parent="."]
+
+[node name="WeaponSprite" type="Sprite" parent="Weapon"]
+position = Vector2( -5, 5.57126 )
+rotation = -2.42852
+scale = Vector2( 1, -1 )
+texture = ExtResource( 4 )
+offset = Vector2( 16.5082, 3.11086 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/shoot = ExtResource( 8 )
+anims/swing_1 = ExtResource( 5 )
+anims/swing_2 = ExtResource( 7 )
+anims/weapon_bob = ExtResource( 6 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 6 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 7 )
