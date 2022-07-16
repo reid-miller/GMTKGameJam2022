@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://scripts/Enemy.gd"
+}, {
+"base": "Area2D",
+"class": "player_hitbox",
+"language": "GDScript",
+"path": "res://scripts/player_hitbox.gd"
 } ]
 _global_script_class_icons={
-"Enemy": ""
+"Enemy": "",
+"player_hitbox": ""
 }
 
 [application]

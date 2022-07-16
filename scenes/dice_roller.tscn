@@ -16,3 +16,5 @@ margin_top = -10.0
 margin_right = 10.0
 margin_bottom = 10.0
 color = Color( 0.870588, 0.0588235, 0.686275, 1 )
+
+[connection signal="area_entered" from="." to="." method="_on_dice_roller_area_entered"]

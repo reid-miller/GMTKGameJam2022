@@ -26,4 +26,13 @@ func _on_Button_button_down():
 		pos = (pos + rand_num) - BOARD_SIZE
 	else:
 		pos += rand_num
+		
+func roll_dice():
+	rng.randomize()
+	var rand_num = int(round(rng.randf() * 6.0))
+	if pos + rand_num > BOARD_SIZE:
+		pos = (pos + rand_num) - BOARD_SIZE
+	else:
+		pos += rand_num
+	
 
