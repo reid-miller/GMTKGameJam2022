@@ -1,17 +1,77 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Square.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player_chip.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/BoardPath.gd" type="Script" id=3]
 [ext_resource path="res://sprites/tile frame.png" type="Texture" id=4]
-[ext_resource path="res://scenes/rooms/room.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/room.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Board.gd" type="Script" id=6]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( -70.7378, 78.6175, 70.7378, -78.6175, 80, 13, 0, 0, 0, 0, 224, 21, -44.1706, 2.00775, 44.1706, -2.00775, 283, -7, 0, 0, 0, 0, 350, 20, -49.0108, 0.398462, 49.0108, -0.398462, 411, -9, 0, 0, 0, 0, 474, 20, -45.4246, -3.18769, 45.4246, 3.18769, 541, -9, 0, 0, 0, 0, 589, 17, 13.9462, -39.0493, -13.9462, 39.0493, 644, 3, 0, 0, 0, 0, 604, 86, -0.796924, -63.3554, 0.796924, 63.3554, 651, 72, 0, 0, 0, 0, 597, 157, 27.4939, -64.9493, -27.4939, 64.9493, 651, 155, 0, 0, 0, 0, 606, 230, 12.7508, -41.8385, -12.7508, 41.8385, 639, 225, 0, 0, 0, 0, 609, 306, 29.4862, -31.8769, -29.4862, 31.8769, 540, 279, 0, 0, 0, 0, 478, 305, 7.57077, -35.8616, -7.57077, 35.8616, 412, 274, 0, 0, 0, 0, 346, 301, 11.9539, 19.1262, -11.9539, -19.1262, 282, 272, 0, 0, 0, 0, 223, 305, 16.3369, -8.76616, -16.3369, 8.76616, 155, 270, 0, 0, 0, 0, 90, 305, -39.8462, 50.2062, 39.8462, -50.2062, 133, 244, 0, 0, 0, 0, 83, 229, -13.5477, 49.0108, 13.5477, -49.0108, 136, 168, 0, 0, 0, 0, 88, 160, -24.3062, 49.0108, 24.3062, -49.0108, 143, 103, 0, 0, 0, 0, 86, 90, -33.4708, 58.5739, 33.4708, -58.5739, 137, 39, 0, 0, 0, 0, 80, 13, 0, 0, 0, 0, 79, 25 )
 }
 
+[sub_resource type="Animation" id=2]
+resource_name = "zoom_in"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.67, 1.67 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -212, -119 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "zoom_out"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -212, -119 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.67, 1.67 ), Vector2( 1, 1 ) ]
+}
+
 [node name="Board" type="Node2D"]
+script = ExtResource( 6 )
 
 [node name="Squares" type="Node2D" parent="."]
 
@@ -81,10 +141,12 @@ rotate = false
 
 [node name="player_chip" parent="BoardPath/PathFollow2D" instance=ExtResource( 2 )]
 position = Vector2( -1, 1 )
-scale = Vector2( 10, 10 )
+scale = Vector2( 1, 1 )
 
-[node name="room_1" parent="." instance=ExtResource( 5 )]
+[node name="room" parent="." instance=ExtResource( 5 )]
 position = Vector2( 319, 179 )
 scale = Vector2( 0.6, 0.6 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="room_1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/zoom_in = SubResource( 2 )
+anims/zoom_out = SubResource( 3 )

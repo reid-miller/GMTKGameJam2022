@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spr_player.png-b2d97a705733283e0b0313c194fd9188.stex"
+path="res://.import/tile frame 2.png-92fd667fb57fce6571a3eaa075af999d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/spr_player.png"
-dest_files=[ "res://.import/spr_player.png-b2d97a705733283e0b0313c194fd9188.stex" ]
+source_file="res://sprites/tile frame 2.png"
+dest_files=[ "res://.import/tile frame 2.png-92fd667fb57fce6571a3eaa075af999d.stex" ]
 
 [params]
 
@@ -20,11 +20,11 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=false
+process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
