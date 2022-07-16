@@ -27,7 +27,7 @@ nodes/Animation/position = Vector2( 126.5, 94 )
 nodes/TimeScale/node = SubResource( 25 )
 nodes/TimeScale/position = Vector2( 300, 90 )
 nodes/output/position = Vector2( 490, 100 )
-node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
 [sub_resource type="AnimationNodeAnimation" id=19]
 animation = "swing_1"
@@ -41,7 +41,7 @@ nodes/Animation/position = Vector2( 150, 150 )
 nodes/TimeScale/node = SubResource( 20 )
 nodes/TimeScale/position = Vector2( 330, 140 )
 nodes/output/position = Vector2( 520, 180 )
-node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
 [sub_resource type="AnimationNodeAnimation" id=21]
 animation = "swing_2"
@@ -55,7 +55,7 @@ nodes/Animation/position = Vector2( 60, 130 )
 nodes/TimeScale/node = SubResource( 22 )
 nodes/TimeScale/position = Vector2( 230, 120 )
 nodes/output/position = Vector2( 420, 150 )
-node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "weapon_bob"
@@ -113,6 +113,7 @@ shape = SubResource( 34 )
 [node name="PlayerBodySprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 3 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="PlayerEyesSprite" type="AnimatedSprite" parent="."]
@@ -120,18 +121,12 @@ frames = ExtResource( 2 )
 
 [node name="Weapon" type="Node2D" parent="."]
 
-
 [node name="Hitboxes" type="Node2D" parent="Weapon"]
 visible = false
-scale = Vector2( 1, 1 )
 
 [node name="WeaponSprite" type="Sprite" parent="Weapon"]
-position = Vector2( -5, 4.56362 )
-rotation = -2.4222
-position = Vector2( -5, 5.88111 )
-rotation = -2.41215
-
-
+position = Vector2( -5, 5.28693 )
+rotation = -2.36819
 scale = Vector2( 1, -1 )
 texture = ExtResource( 4 )
 offset = Vector2( 16.5082, 3.11086 )
