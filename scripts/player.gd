@@ -1,22 +1,27 @@
  extends KinematicBody2D
 
+# Scenes
+var PlayerHitbox = preload("res://scenes/player_hitbox.tscn")
+
 # Nodes
 onready var body_sprite: AnimatedSprite = $PlayerBodySprite
 onready var eyes_sprite: AnimatedSprite = $PlayerEyesSprite
 onready var animation_tree = $AnimationTree["parameters/playback"]
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var weapon: Node2D = $Weapon
+onready var hitboxes: Node2D = $Weapon/Hitboxes
 
 # Stats
-const BASE_MOVEMENT_SPEED: float = 50.0
+const BASE_MOVEMENT_SPEED: float = 75.0
 const BASE_HEALTH: float = 10.0
 const BASE_ATTACK_SPEED: float = 10.0
 const BASE_DAMAGE: float = 10.0
+const BASE_KNOCKBACK: float = 20.0
 var movement_speed: float = BASE_MOVEMENT_SPEED
 var health: float = BASE_HEALTH
 var attack_speed: float = BASE_ATTACK_SPEED
 var damage: float = BASE_DAMAGE
-
+var knockback: float = BASE_KNOCKBACK
 
 # Animation Variables
 var blink_interval: float = 6
@@ -31,12 +36,15 @@ var can_shoot: bool = true
 
 func _ready() -> void:
 	
+	Globals.player_scene = self
+	
 	# Setup blink timer
 	var blink_timer: Timer = Timer.new()
 	add_child(blink_timer)
 	blink_timer.wait_time = blink_interval
 	blink_timer.connect("timeout", self, "_blink")
 	blink_timer.start()
+
 
 func _physics_process(delta: float) -> void:
 	_move()
@@ -104,3 +112,8 @@ func _move() -> void:
 	velocity = input_vector.normalized() * movement_speed
 	move_and_slide(velocity)
 	
+func _spawn_hitbox():
+	var hitbox = PlayerHitbox.instance()
+	hitbox.damage = damage
+	hitbox.knockback = knockback
+	hitboxes.add_child(hitbox)
