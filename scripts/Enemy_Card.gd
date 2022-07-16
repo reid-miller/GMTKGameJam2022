@@ -6,10 +6,12 @@ onready var eyes_sprite: AnimatedSprite = $CardEyesSprite
 # Animation Variables
 var blink_interval: float = 6
 var start_blink: bool = false
+var death_interval = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#enemy_sprite.playing = true
+	if dir != Vector2.ZERO:
+		enemy_sprite.playing = true
 	
 	# Setup blink timer
 	var blink_timer: Timer = Timer.new()
@@ -17,10 +19,31 @@ func _ready():
 	blink_timer.wait_time = blink_interval
 	blink_timer.connect("timeout", self, "_blink")
 	blink_timer.start()
+	
 	print(enemy_sprite.frames.get_animation_names())
 	
 func _physics_process(delta: float) -> void:
 	_handle_animations()
+	_handle_death()
+	
+func _handle_death():
+	var death_timer: Timer = Timer.new()
+	add_child(death_timer)
+	death_timer.wait_time = death_interval
+	death_timer.connect("timeout", self, "_death")
+	
+	if health <= 0:
+		enemy_sprite.modulate = Color(1,0,0)
+		eyes_sprite.modulate = Color(1,0,0)
+		eyes_sprite.frame = 2
+		enemy_sprite.stop()
+		enemy_sprite.flip_v = true
+		eyes_sprite.flip_v = true
+		death_timer.start()
+
+func _death():
+	queue_free()
+
 
 func _handle_animations():
 	# Blinking
