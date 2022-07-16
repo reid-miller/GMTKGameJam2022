@@ -1,17 +1,28 @@
 extends Enemy
 
 onready var enemy_sprite: AnimatedSprite = $EnemyBodySprite
-
+var lap = Globals.lap
 var death_interval: float = 1
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_determine_level()
 	enemy_sprite.playing = true
 	
 func _physics_process(delta: float) -> void:
 	_handle_death()
 	
+func _determine_level():
+	if lap == 1:
+		enemy_sprite.animation = "White"
+	elif lap == 2:
+		enemy_sprite.animation = "Red"
+	elif lap == 3:
+		enemy_sprite.animation = "Green"
+	elif lap >= 4:
+		enemy_sprite.animation = "Blue"
+
 func _handle_death():
 	var death_timer: Timer = Timer.new()
 	add_child(death_timer)

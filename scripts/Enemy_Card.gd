@@ -2,6 +2,7 @@ extends Enemy
 
 onready var enemy_sprite: AnimatedSprite = $CardBodySprite
 onready var eyes_sprite: AnimatedSprite = $CardEyesSprite
+var lap = Globals.lap
 
 # Animation Variables
 var blink_interval: float = 6
@@ -10,6 +11,8 @@ var death_interval = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_determine_level()
+	
 	if dir != Vector2.ZERO:
 		enemy_sprite.playing = true
 	
@@ -25,6 +28,20 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	_handle_animations()
 	_handle_death()
+	
+func _determine_level():
+	if lap == 1:
+		enemy_sprite.animation = "Jack"
+		eyes_sprite.animation = "Jack"
+	elif lap == 2:
+		enemy_sprite.animation = "Queen"
+		eyes_sprite.animation = "Queen"
+	elif lap == 3:
+		enemy_sprite.animation = "King"
+		eyes_sprite.animation = "King"
+	elif lap >= 4:
+		enemy_sprite.animation = "Ace"
+		eyes_sprite.animation = "Ace"
 	
 func _handle_death():
 	var death_timer: Timer = Timer.new()

@@ -6,6 +6,7 @@ var rng = RandomNumberGenerator.new()
 
 func _ready():
 	Globals.board = self
+	Globals.dice_roller.floor_cleared()
 	pass # Replace with function body.
 
 
@@ -13,7 +14,8 @@ func _ready():
 func _process(delta):
 	pass
 
-func new_room():
+func new_room(pos):
+	# print_debug($Squares.get_child(pos).color) # Get color of tile, red: 0 green: 1 yellow: 2
 	room_instance.queue_free()
 	rng.randomize()
 	var room_num = rng.randi_range(0, 2)
@@ -31,7 +33,11 @@ func change_tile(tile_num):
 
 func zoom_in():
 	$AnimationPlayer.play("zoom_in")
-	pass
 func zoom_out():
 	$AnimationPlayer.play("zoom_out")
 	
+func _on_Player_player_died():
+	$gui.game_over()
+
+func reset():
+	get_tree().reload_current_scene()

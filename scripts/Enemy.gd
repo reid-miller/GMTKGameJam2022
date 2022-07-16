@@ -9,6 +9,7 @@ var knockback_vector = Vector2.ZERO
 var speed = 10
 var knockback_decay = 5
 var dir
+var dead = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,9 +28,13 @@ func _physics_process(delta):
 			knockback_vector -= knockback_vector.normalized() * knockback_decay
 	
 	# Check if dead
+<<<<<<< Updated upstream
 	if health <= 0:
-		print("dead")
+=======
+	if health <= 0 and !dead:
+		dead = true
 		Globals.dice_roller.check_room(true)
+>>>>>>> Stashed changes
 		#queue_free()
 		speed = 0
 
