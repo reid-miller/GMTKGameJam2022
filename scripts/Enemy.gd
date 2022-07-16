@@ -28,6 +28,7 @@ func _physics_process(delta):
 	
 	# Check if dead
 	if health <= 0:
+		print("dead")
 		queue_free()
 
 	
