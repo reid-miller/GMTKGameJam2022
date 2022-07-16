@@ -9,7 +9,8 @@ var start_blink: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#enemy_sprite.playing = true
+	if dir != Vector2.ZERO:
+		enemy_sprite.playing = true
 	
 	# Setup blink timer
 	var blink_timer: Timer = Timer.new()
