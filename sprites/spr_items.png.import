@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spikes 10.png-ceaf6fb3b3f5116b1ef5126b3a48c573.stex"
+path="res://.import/spr_items.png-57e7b6439ef3d69a40047699108c5c9b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/spikes 10.png"
-dest_files=[ "res://.import/spikes 10.png-ceaf6fb3b3f5116b1ef5126b3a48c573.stex" ]
+source_file="res://sprites/spr_items.png"
+dest_files=[ "res://.import/spr_items.png-57e7b6439ef3d69a40047699108c5c9b.stex" ]
 
 [params]
 
@@ -20,11 +20,11 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false

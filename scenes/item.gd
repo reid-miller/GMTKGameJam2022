@@ -51,3 +51,5 @@ func _give_stats():
 			Globals.player_scene.movement_speed += Globals.player_scene.BASE_MOVEMENT_SPEED * .2
 		4:
 			Globals.player_scene.knockback += Globals.player_scene.BASE_KNOCKBACK * .2
+		5:
+			Globals.player_scene.i_frames += 50
