@@ -25,6 +25,7 @@ func roll_dice():
 func _on_dice_roller_area_entered(area):
 	if area is player_hitbox and can_hit:
 		can_hit = false
+		$AudioStreamPlayer.play()
 		var die = load('res://scenes/dice.tscn')
 		var die_instance = die.instance()
 		add_child_below_node(get_tree().get_root(), die_instance)

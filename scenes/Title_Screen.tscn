@@ -9,7 +9,7 @@
 [ext_resource path="res://sprites/TitleScreen/volume slider.png" type="Texture" id=7]
 [ext_resource path="res://sprites/TitleScreen/volume button.png" type="Texture" id=8]
 [ext_resource path="res://sprites/TitleScreen/room.png" type="Texture" id=9]
-[ext_resource path="res://sounds/title_music.ogg" type="AudioStream" id=10]
+[ext_resource path="res://sounds/menu.ogg" type="AudioStream" id=10]
 [ext_resource path="res://sprites/new credits button.png" type="Texture" id=11]
 
 [node name="TitleScreen" type="Control"]

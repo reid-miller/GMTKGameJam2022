@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/melee_whoosh.ogg-be1da1398aff8431e45d24994ecaa738.oggstr"
+
+[deps]
+
+source_file="res://sounds/melee_whoosh.ogg"
+dest_files=[ "res://.import/melee_whoosh.ogg-be1da1398aff8431e45d24994ecaa738.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

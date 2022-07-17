@@ -6,6 +6,7 @@ var velocity: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
+	$bullet_sound.play()
 	lifetime = 1000
 	velocity = velocity.normalized() * speed
 	connect("body_entered", self, "_detect_wall")
