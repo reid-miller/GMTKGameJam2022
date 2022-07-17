@@ -14,12 +14,23 @@ func _ready():
 func _process(delta):
 	pass
 
-func new_room(pos):
-	# print_debug($Squares.get_child(pos).color) # Get color of tile, red: 0 green: 1 yellow: 2
+func new_room(child_idx):
+	var room_num
+	var room
+	var color = $Squares.get_child(child_idx).color
 	room_instance.queue_free()
-	rng.randomize()
-	var room_num = rng.randi_range(0, 2)
-	var room = load('res://scenes/rooms/room_' + str(room_num) + '.tscn')
+	# Red
+	if color == 0:
+		rng.randomize()
+		room_num = rng.randi_range(0, 2)
+		room = load('res://scenes/rooms/room_' + str(room_num) + '.tscn')
+	# Green
+	elif color == 1:
+		room = load('res://scenes/rooms/item_room.tscn')
+	# Yellow
+	else:
+		room = load('res://scenes/rooms/item_room.tscn')
+	
 	room_instance = room.instance()
 	add_child_below_node($Squares, room_instance)
 	room_instance.position.x = 319
@@ -29,7 +40,6 @@ func new_room(pos):
 	
 func change_tile(tile_num):
 	$Squares.get_child(tile_num).shuffle_square()
-	pass
 
 func zoom_in():
 	$AnimationPlayer.play("zoom_in")
@@ -37,7 +47,7 @@ func zoom_out():
 	$AnimationPlayer.play("zoom_out")
 	
 func _on_Player_player_died():
-	$gui.game_over()
+	$game_over.game_over()
 
 func reset():
 	get_tree().reload_current_scene()

@@ -13,6 +13,7 @@ var dead = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Globals.enemies_left += 1
 	pass # Replace with function body.
 
 func _physics_process(delta):
@@ -28,18 +29,10 @@ func _physics_process(delta):
 			knockback_vector -= knockback_vector.normalized() * knockback_decay
 	
 	# Check if dead
-<<<<<<< Updated upstream
-	if health <= 0:
-=======
 	if health <= 0 and !dead:
 		dead = true
-		Globals.dice_roller.check_room(true)
->>>>>>> Stashed changes
+		Globals.enemies_left -= 1
+		if Globals.enemies_left == 0:
+			Globals.dice_roller.floor_cleared()
 		#queue_free()
 		speed = 0
-
-
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
