@@ -114,6 +114,7 @@ shape = SubResource( 34 )
 [node name="PlayerBodySprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 3 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="PlayerEyesSprite" type="AnimatedSprite" parent="."]
@@ -129,8 +130,10 @@ frames = ExtResource( 10 )
 visible = false
 
 [node name="WeaponSprite" type="Sprite" parent="Weapon"]
-position = Vector2( -5, 4.71541 )
-rotation = -2.47373
+
+position = Vector2( -5, 4.69658 )
+rotation = -2.40113
+
 scale = Vector2( 1, -1 )
 texture = ExtResource( 4 )
 offset = Vector2( 16.5082, 3.11086 )

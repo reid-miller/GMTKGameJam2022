@@ -8,6 +8,7 @@ var PlayerBullet = preload("res://scenes/player_bullet.tscn")
 onready var body_sprite: AnimatedSprite = $PlayerBodySprite
 onready var eyes_sprite: AnimatedSprite = $PlayerEyesSprite
 onready var anim_tree = $AnimationTree
+onready var collider = $PlayerCollider
 onready var animation_tree = $AnimationTree["parameters/playback"]
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var weapon: Node2D = $Weapon
@@ -23,7 +24,7 @@ const BASE_MOVEMENT_SPEED: float = 75.0
 const BASE_HEALTH: float = 6.0
 const BASE_ATTACK_SPEED: float = 1.0
 const BASE_DAMAGE: float = 1.0
-const BASE_KNOCKBACK: float = 20.0
+const BASE_KNOCKBACK: float = 250.0
 var movement_speed: float = BASE_MOVEMENT_SPEED
 var health: float = BASE_HEALTH
 var attack_speed: float = BASE_ATTACK_SPEED
@@ -66,7 +67,7 @@ func _physics_process(delta: float) -> void:
 	anim_tree["parameters/swing_1/TimeScale/scale"] = attack_speed
 	anim_tree["parameters/swing_2/TimeScale/scale"] = attack_speed
 	anim_tree["parameters/shoot/TimeScale/scale"] = attack_speed
-	print("\nDAMGE " + str(damage) + "\nHEALTH " + str(health) + "\nATK SPEED " + str(attack_speed) + "\nMVMNT SPEED " + str(movement_speed) + "\nKNOCKBACK" + str(knockback))
+	#print("\nDAMGE " + str(damage) + "\nHEALTH " + str(health) + "\nATK SPEED " + str(attack_speed) + "\nMVMNT SPEED " + str(movement_speed) + "\nKNOCKBACK" + str(knockback))
 func _handle_player_animations():
 	
 	# Movement
@@ -128,7 +129,7 @@ func _handle_weapon_animations() -> void:
 		if get_viewport().get_mouse_position().x < global_position.x:
 				weapon.scale.y = -1
 	
-	
+	# Muzzle Flash
 	if muzzle_flash.frame >= 5:
 		muzzle_flash.playing = false
 		muzzle_flash.frame = 0
@@ -160,6 +161,9 @@ func _handle_player_damage(area: Node):
 func _blink():
 	eyes_sprite.playing = true
 
+func green_tile_effect():
+	health = 6
+	_update_ammo_counter(3)
 
 func _move() -> void:
 	
@@ -168,7 +172,7 @@ func _move() -> void:
 		return
 	
 	# Gather Input
-	var input_vector: Vector2 = Vector2.ZERO
+	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_axis("move_left", "move_right")
 	input_vector.y = Input.get_axis("move_up", "move_down")
 	
@@ -176,6 +180,8 @@ func _move() -> void:
 	velocity = input_vector.normalized() * movement_speed
 	move_and_slide(velocity)
 
+func _check_spike():
+	pass
 
 func _spawn_hitbox():
 	var hitbox = PlayerHitbox.instance()

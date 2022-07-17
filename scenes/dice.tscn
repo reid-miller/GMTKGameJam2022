@@ -31,3 +31,18 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.8
+one_shot = true
+
+[node name="thanos_snap_die" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="move_piece" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="thanos_snap_die" to="." method="_on_thanos_snap_die_timeout"]
+[connection signal="timeout" from="move_piece" to="." method="_on_move_piece_timeout"]

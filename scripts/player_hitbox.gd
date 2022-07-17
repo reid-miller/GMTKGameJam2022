@@ -23,6 +23,7 @@ func _handle_collision(body: Node) -> void:
 		body.health -= damage
 		var knockback_vector: Vector2 = (body.global_position - global_position).normalized() * knockback
 		body.knockback_vector = knockback_vector
+		body.animator.play("damage")
 		hitlist.append(body)
 
 

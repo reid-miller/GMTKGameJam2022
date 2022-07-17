@@ -63,11 +63,12 @@ extents = Vector2( 26, 27.625 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -9.06364 )
 frames = ExtResource( 1 )
-frame = 2
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "bobbing"
 anims/bobbing = SubResource( 1 )
 anims/hit = SubResource( 3 )
 
