@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Wall
 
 func _ready():
 	var rng = RandomNumberGenerator.new()

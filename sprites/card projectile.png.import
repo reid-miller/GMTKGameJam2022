@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tile frame.png-88135fc2656b70c8d263adfeb8fc729a.stex"
+path="res://.import/card projectile.png-8551c4bae4cc24b9c6aed420d8aca10b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/tile frame.png"
-dest_files=[ "res://.import/tile frame.png-88135fc2656b70c8d263adfeb8fc729a.stex" ]
+source_file="res://sprites/card projectile.png"
+dest_files=[ "res://.import/card projectile.png-8551c4bae4cc24b9c6aed420d8aca10b.stex" ]
 
 [params]
 
@@ -20,11 +20,11 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false

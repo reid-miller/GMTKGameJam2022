@@ -5,11 +5,10 @@ onready var eyes_sprite: AnimatedSprite = $CardEyesSprite
 var lap = Globals.lap
 
 # Animation Variables
-var blink_interval: float = 4
+var blink_interval: float = 2
 var blink_timer: Timer = Timer.new()
 
 func _ready() -> void:
-	._ready()
 	add_child(blink_timer)
 	blink_timer.wait_time = blink_interval
 	blink_timer.connect("timeout", self, "_blink")
@@ -32,3 +31,4 @@ func _determine_level():
 func _blink():
 	eyes_sprite.frame = 0
 	eyes_sprite.playing = true
+	_spawn_projectile(Globals.player_scene.global_position - global_position, 4)

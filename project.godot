@@ -14,10 +14,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/Enemy.gd"
 }, {
+"base": "Node2D",
+"class": "EnemyProjectile",
+"language": "GDScript",
+"path": "res://scripts/enemy_projectile.gd"
+}, {
+"base": "Area2D",
+"class": "Spike",
+"language": "GDScript",
+"path": "res://scripts/spike.gd"
+}, {
 "base": "StaticBody2D",
 "class": "Wall",
 "language": "GDScript",
-"path": "res://scenes/wall.gd"
+"path": "res://scripts/wall.gd"
 }, {
 "base": "Area2D",
 "class": "player_hitbox",
@@ -26,6 +36,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Enemy": "",
+"EnemyProjectile": "",
+"Spike": "",
 "Wall": "",
 "player_hitbox": ""
 }
