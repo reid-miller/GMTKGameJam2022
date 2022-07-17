@@ -1,8 +1,9 @@
 class_name Enemy
 extends KinematicBody2D
 
-onready var animator: AnimationPlayer = $AnimationPlayer
+var projectile_scene = preload("res://scenes/enemy_projectile.tscn")
 
+onready var animator: AnimationPlayer = $AnimationPlayer
 onready var player = Globals.player_scene
 var health = 3
 var speed = 10
@@ -22,9 +23,9 @@ func _ready():
 	# Determine Power
 	var power = Globals.lap
 	health = 5 + power
-	speed = 20 + (power*2)
+	speed = 40 + (power*5)
 	damage = 3 + floor(power/2)
-	
+	_determine_sprite(power)
 	
 	# Setup movement timer
 	add_child(movement_delay_timer)
@@ -71,6 +72,16 @@ func _physics_process(delta):
 		Globals.player_scene._update_ammo_counter(1)
 		Globals.enemies_left -= 1
 		animator.play("death")
-#		if Globals.enemies_left == 0:
-#			Globals.dice_roller.floor_cleared()
+		if Globals.enemies_left == 0:
+			Globals.dice_roller.floor_cleared()
+
+func _spawn_projectile(dir: Vector2, speed: float):
+	var new_projectile: EnemyProjectile = projectile_scene.instance()
+	new_projectile.direction = dir.normalized()
+	new_projectile.speed = speed
+	get_parent().add_child(new_projectile)
+	new_projectile.global_position = global_position
+
+func _determine_sprite(power):
+	pass
 	

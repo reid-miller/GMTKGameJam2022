@@ -52,13 +52,15 @@ func _ready() -> void:
 	Globals.player_scene = self
 
 	hurtbox.connect("body_entered", self, "_handle_player_damage")
-
+	hurtbox.connect("area_entered", self, "_handle_player_damage")
+	
 	# Setup blink timer
 	var blink_timer: Timer = Timer.new()
 	add_child(blink_timer)
 	blink_timer.wait_time = blink_interval
 	blink_timer.connect("timeout", self, "_blink")
 	blink_timer.start()
+
 
 func _physics_process(delta: float) -> void:
 	_move()
@@ -68,6 +70,8 @@ func _physics_process(delta: float) -> void:
 	anim_tree["parameters/swing_2/TimeScale/scale"] = attack_speed
 	anim_tree["parameters/shoot/TimeScale/scale"] = attack_speed
 	#print("\nDAMGE " + str(damage) + "\nHEALTH " + str(health) + "\nATK SPEED " + str(attack_speed) + "\nMVMNT SPEED " + str(movement_speed) + "\nKNOCKBACK" + str(knockback))
+
+	
 func _handle_player_animations():
 	
 	# Movement
@@ -100,6 +104,7 @@ func _handle_player_animations():
 			visible = !visible
 	else:
 		visible = true
+
 
 func _handle_weapon_animations() -> void:
 	
@@ -134,11 +139,12 @@ func _handle_weapon_animations() -> void:
 		muzzle_flash.playing = false
 		muzzle_flash.frame = 0
 
+
 func _update_ammo_counter(amount: int):
 	ammo = clamp(ammo + amount, 0, 3)
 	ammo_counter.frame = ammo
 	ammo_counter_alpha = 500
-	
+
 
 func _check_for_combo():
 	if Input.is_action_pressed("attack"):
@@ -150,7 +156,7 @@ func _check_for_combo():
 
 
 func _handle_player_damage(area: Node):
-	if area is Enemy and remaining_iframes <= 0:
+	if (area is Enemy or area is Spike or area is EnemyProjectile) and remaining_iframes <= 0:
 		health -= 1
 		if health <= 0:
 			emit_signal("player_died")
@@ -161,9 +167,12 @@ func _handle_player_damage(area: Node):
 func _blink():
 	eyes_sprite.playing = true
 
+
 func green_tile_effect():
 	health = 6
 	_update_ammo_counter(3)
+	Globals.dice_roller.floor_cleared()
+
 
 func _move() -> void:
 	
@@ -180,8 +189,6 @@ func _move() -> void:
 	velocity = input_vector.normalized() * movement_speed
 	move_and_slide(velocity)
 
-func _check_spike():
-	pass
 
 func _spawn_hitbox():
 	var hitbox = PlayerHitbox.instance()
