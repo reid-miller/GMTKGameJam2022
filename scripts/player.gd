@@ -20,7 +20,7 @@ onready var hurtbox: Area2D = $PlayerHurtBox
 onready var ammo_counter: AnimatedSprite = $AmmoCounter
 
 # Stats
-const BASE_MOVEMENT_SPEED: float = 75.0
+const BASE_MOVEMENT_SPEED: float = 90.0
 const BASE_HEALTH: float = 6.0
 const BASE_ATTACK_SPEED: float = 1.0
 const BASE_DAMAGE: float = 1.0
@@ -43,9 +43,10 @@ var can_attack: bool = true
 var can_shoot: bool = true
 var remaining_iframes: int = 0
 var ammo: int = 3
-
+var label_alpha = 1.5
 # Signals
 signal player_died
+signal player_damaged
 
 func _ready() -> void:
 	
@@ -70,7 +71,8 @@ func _physics_process(delta: float) -> void:
 	anim_tree["parameters/swing_2/TimeScale/scale"] = attack_speed
 	anim_tree["parameters/shoot/TimeScale/scale"] = attack_speed
 	#print("\nDAMGE " + str(damage) + "\nHEALTH " + str(health) + "\nATK SPEED " + str(attack_speed) + "\nMVMNT SPEED " + str(movement_speed) + "\nKNOCKBACK" + str(knockback))
-
+	$CanvasLayer/Label.modulate.a = clamp(label_alpha, 0, 1)
+	label_alpha = max(0, label_alpha - .01)
 	
 func _handle_player_animations():
 	
@@ -127,6 +129,7 @@ func _handle_weapon_animations() -> void:
 	# Shooting
 	elif can_shoot and Input.is_action_pressed("shoot") and animation_tree.get_current_node() == "weapon_bob" and ammo > 0:
 		animation_tree.travel("shoot")
+		green_tile_effect()
 	elif Input.is_action_pressed("shoot") and ammo <= 0:
 		_update_ammo_counter(0)
 	if animation_tree.get_current_node() == "shoot":
@@ -157,6 +160,7 @@ func _check_for_combo():
 
 func _handle_player_damage(area: Node):
 	if (area is Enemy or area is Spike or area is EnemyProjectile) and remaining_iframes <= 0:
+		emit_signal("player_damaged")
 		health -= 1
 		if health <= 0:
 			emit_signal("player_died")
@@ -172,6 +176,8 @@ func green_tile_effect():
 	health = 6
 	_update_ammo_counter(3)
 	Globals.dice_roller.floor_cleared()
+	animation_player.play("green")
+	show_banner("HP AND AMMO RESTORED!", Color.green)
 
 
 func _move() -> void:
@@ -196,6 +202,11 @@ func _spawn_hitbox():
 	hitbox.knockback = knockback
 	hitboxes.add_child(hitbox)
 
+
+func show_banner(text: String, color: Color):
+	$CanvasLayer/Label.text = text
+	$CanvasLayer/Label.modulate = color
+	label_alpha = 2.0
 
 func _spawn_bullet():
 	var bullet = PlayerBullet.instance()
