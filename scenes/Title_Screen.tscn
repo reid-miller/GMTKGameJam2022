@@ -16,15 +16,15 @@ anchor_bottom = 1.0
 script = ExtResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 640.0
-margin_bottom = 360.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture = ExtResource( 9 )
 
 [node name="Title" type="TextureRect" parent="."]
 margin_left = 122.0
-margin_top = 60.0
+margin_top = 80.0
 margin_right = 518.0
-margin_bottom = 106.0
+margin_bottom = 126.0
 texture = ExtResource( 2 )
 
 [node name="StartButton" type="Button" parent="."]
@@ -59,27 +59,25 @@ margin_bottom = 319.0
 icon = ExtResource( 5 )
 flat = true
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="VolumeBar" type="TextureRect" parent="."]
 margin_left = 456.0
 margin_top = 280.0
 margin_right = 604.0
 margin_bottom = 320.0
 texture = ExtResource( 7 )
 
-[node name="TextureRect3" type="TextureRect" parent="."]
-margin_left = 497.0
-margin_top = 290.0
-margin_right = 513.0
-margin_bottom = 306.0
-texture = ExtResource( 8 )
-
-[node name="HSlider" type="HSlider" parent="."]
-margin_left = 472.0
-margin_top = 240.0
-margin_right = 568.0
-margin_bottom = 256.0
+[node name="VolumeSlider" type="HSlider" parent="."]
+margin_left = 498.0
+margin_top = 289.0
+margin_right = 590.0
+margin_bottom = 305.0
+custom_icons/grabber_disabled = ExtResource( 8 )
+custom_icons/grabber_highlight = ExtResource( 8 )
+custom_icons/grabber = ExtResource( 8 )
 
 [connection signal="button_up" from="StartButton" to="." method="_on_StartButton_button_up"]
 [connection signal="button_up" from="ExitButton" to="." method="_on_ExitButton_button_up"]
 [connection signal="button_up" from="Minimize" to="." method="_on_Minimize_button_up"]
 [connection signal="button_up" from="Maximize" to="." method="_on_Maximize_button_up"]
+[connection signal="changed" from="VolumeSlider" to="." method="_on_VolumeSlider_changed"]
+[connection signal="value_changed" from="VolumeSlider" to="." method="_on_value_changed"]
