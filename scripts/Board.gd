@@ -23,7 +23,7 @@ func new_room(child_idx):
 	# Red
 	if color == 0:
 		rng.randomize()
-		room_num = rng.randi_range(0, 11)
+		room_num = rng.randi_range(0, 16)
 		room = load('res://scenes/rooms/room_' + str(room_num) + '.tscn')
 		$red_sound.play()
 	# Green
