@@ -37,6 +37,7 @@ func roll_dice():
 	rng.randomize()
 	var rand_num = rng.randi_range(1, 6)
 	if pos + rand_num > BOARD_SIZE:
+		Globals.lap += 1
 		pos = (pos + rand_num) - BOARD_SIZE
 	else:
 		pos += rand_num
