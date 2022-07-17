@@ -20,7 +20,7 @@ func _ready() -> void:
 	dash_end_timer.one_shot = true
 	dash_end_timer.connect("timeout", self, "_end_dash")
 	_determine_level()
-	speed = 10 + (lap)
+	speed = 8 + (lap)
 
 func _physics_process(delta: float) -> void:
 	if global_position.y - Globals.player_scene.global_position.y < -10:
@@ -57,11 +57,11 @@ func _determine_level():
 
 func _dash():
 	dashing = true
-	speed = speed * 5
+	speed = speed * 4
 	dash_end_timer.start()
 	
 func _end_dash():
 	rotation_degrees = 0
 	dashing = false
-	speed = speed / 5
+	speed = speed / 4
 	dash_timer.start()

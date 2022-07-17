@@ -5,7 +5,7 @@ onready var eyes_sprite: AnimatedSprite = $CardEyesSprite
 var lap = Globals.lap
 
 # Animation Variables
-var blink_interval: float = 2
+var blink_interval: float = 3
 var blink_timer: Timer = Timer.new()
 
 func _ready() -> void:

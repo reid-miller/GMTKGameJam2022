@@ -112,7 +112,7 @@ script = ExtResource( 3 )
 [node name="CardBodySprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 2 )
 animation = "Ace"
-frame = 6
+frame = 3
 playing = true
 
 [node name="CardEyesSprite" type="AnimatedSprite" parent="."]
