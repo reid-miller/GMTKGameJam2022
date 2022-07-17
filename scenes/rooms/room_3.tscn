@@ -17,14 +17,14 @@ position = Vector2( 219, 90 )
 [node name="rock" parent="." index="5" instance=ExtResource( 3 )]
 position = Vector2( -158, 48 )
 
-[node name="rock2" parent="." index="6" instance=ExtResource( 3 )]
+[node name="Enemy_Coin" parent="." index="6" instance=ExtResource( 5 )]
+position = Vector2( -152, -122 )
+
+[node name="Enemy_PokerChip2" parent="." index="7" instance=ExtResource( 4 )]
+position = Vector2( -247, 108 )
+
+[node name="Enemy_PokerChip" parent="." index="8" instance=ExtResource( 4 )]
+position = Vector2( 217, -99 )
+
+[node name="rock2" parent="." index="9" instance=ExtResource( 3 )]
 position = Vector2( 82, -97 )
-
-[node name="Enemy_PokerChip" parent="rock2" index="2" instance=ExtResource( 4 )]
-position = Vector2( 135, -2 )
-
-[node name="Enemy_PokerChip" parent="rock2/Enemy_PokerChip" index="3" instance=ExtResource( 4 )]
-position = Vector2( -464, 207 )
-
-[node name="Enemy_Coin" parent="rock2/Enemy_PokerChip/Enemy_PokerChip" index="3" instance=ExtResource( 5 )]
-position = Vector2( 95, -230 )
