@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://sprites/2 health.png" type="Texture" id=1]
 [ext_resource path="res://sprites/4 health.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://sprites/6 health.png" type="Texture" id=6]
 [ext_resource path="res://scenes/gui.gd" type="Script" id=7]
 [ext_resource path="res://fonts/resources/Karla-VariableFont_wght.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://sounds/dice_roll.ogg" type="AudioStream" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -68,3 +69,6 @@ custom_fonts/font = SubResource( 4 )
 text = "Loops:
 0"
 align = 1
+
+[node name="dice_roll" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )

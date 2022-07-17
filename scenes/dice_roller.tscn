@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/dice_roller.gd" type="Script" id=1]
 [ext_resource path="res://sprites/dice roll.png" type="Texture" id=2]
+[ext_resource path="res://sounds/dice_roll.ogg" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 21, 19 )
@@ -58,5 +59,8 @@ frames = SubResource( 3 )
 root_node = NodePath("../..")
 autoplay = "float"
 anims/float = SubResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="area_entered" from="." to="." method="_on_dice_roller_area_entered"]

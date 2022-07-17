@@ -21,3 +21,8 @@ func _process(delta):
 
 func _on_Player_player_damaged():
 	$AnimatedSprite/AnimationPlayer.play("spin")
+	$dice_roll.play()
+
+
+func _on_Player_player_died():
+	hide()

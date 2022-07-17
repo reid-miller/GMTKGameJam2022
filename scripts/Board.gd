@@ -23,13 +23,12 @@ func new_room(child_idx):
 	# Red
 	if color == 0:
 		rng.randomize()
-		room_num = rng.randi_range(0, 2)
+		room_num = rng.randi_range(0, 11)
 		room = load('res://scenes/rooms/room_' + str(room_num) + '.tscn')
 		$red_sound.play()
 	# Green
 	elif color == 1:
 		room = load('res://scenes/room.tscn')
-		$yellow_sound.play()
 		$green_timer.start()
 	# Yellow
 	else:
@@ -57,12 +56,13 @@ func _on_Player_player_died():
 
 func reset():
 	Globals.enemies_left = 0
-	Globals.lap = 0
+	Globals.lap = 1
 	print_debug("Presed")
 	get_tree().change_scene("res://scenes/Title_Screen.tscn")
 
 
 func _on_green_timer_timeout():
+	$green_sound.play()
 	Globals.player_scene.green_tile_effect()
 
 	

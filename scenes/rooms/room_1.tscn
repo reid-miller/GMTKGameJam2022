@@ -19,3 +19,7 @@ position = Vector2( 188, -90 )
 position = Vector2( 192, 51 )
 
 [node name="Enemy_Card" parent="." index="7" instance=ExtResource( 3 )]
+position = Vector2( -245, -112 )
+
+[node name="Enemy_Card2" parent="." index="8" instance=ExtResource( 3 )]
+position = Vector2( 243, 100 )

@@ -30,7 +30,6 @@ func change_square():
 		$AnimatedSprite.set_frame(1)
 		color = 1
 	else:
-		
 		$AnimatedSprite.set_frame(2)
 		color = 2
 	
