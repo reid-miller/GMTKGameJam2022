@@ -12,7 +12,7 @@ func _process(delta):
 	else:
 		$AnimatedSprite.frame = 1
 
-		
+# Start next turn proccess
 func floor_cleared():
 	Globals.board.zoom_out()
 	can_hit = true
