@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/421886__b-sean__boss-battle.ogg-bc8a727735e7fac20106a70036474266.oggstr"
+
+[deps]
+
+source_file="res://sounds/421886__b-sean__boss-battle.ogg"
+dest_files=[ "res://.import/421886__b-sean__boss-battle.ogg-bc8a727735e7fac20106a70036474266.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

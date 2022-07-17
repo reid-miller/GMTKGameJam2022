@@ -13,7 +13,3 @@ position = Vector2( -140, -3 )
 position = Vector2( 159, 1 )
 
 [node name="Enemy_Card" parent="." index="5" instance=ExtResource( 2 )]
-position = Vector2( -132, 87 )
-
-[node name="Enemy_Card2" parent="." index="6" instance=ExtResource( 2 )]
-position = Vector2( 144, -79 )

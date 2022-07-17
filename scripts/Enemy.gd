@@ -40,6 +40,8 @@ func _ready():
 	
 	# Increase number of enemies
 	Globals.enemies_left += 1
+	print_debug("Enemy made, total = " + str(Globals.enemies_left))
+	print_debug(self)
 	
 func _start_movement():
 	velocity = Vector2(rand_range(-1, 1), rand_range(-1, 1))
