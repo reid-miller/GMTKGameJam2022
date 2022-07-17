@@ -27,12 +27,13 @@ func new_room(child_idx):
 		$red_sound.play()
 	# Green
 	elif color == 1:
-		room = load('res://scenes/rooms/item_room.tscn')
+		room = load('res://scenes/room.tscn')
 		$yellow_sound.play()
+		$green_timer.start()
 	# Yellow
 	else:
 		room = load('res://scenes/rooms/item_room.tscn')
-	
+		$yellow_sound.play()	
 	room_instance = room.instance()
 	add_child_below_node($Squares, room_instance)
 	room_instance.position.x = 319
@@ -54,4 +55,10 @@ func _on_Player_player_died():
 	$game_over.game_over()
 
 func reset():
-	get_tree().reload_current_scene()
+	Globals.enemies_left = 0
+	Globals.lap = 0
+	get_tree().change_scene("res://scenes/Title_Screen.tscn")
+
+
+func _on_green_timer_timeout():
+	Globals.player_scene.green_tile_effect()
