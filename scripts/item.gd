@@ -43,13 +43,19 @@ func _give_stats():
 	match sprite.frame:
 		0:
 			Globals.player_scene.health = 6
+			Globals.player_scene.show_banner("HEALTH RESTORED!", Color.red)
 		1:
 			Globals.player_scene.attack_speed += .25
+			Globals.player_scene.show_banner("ATK SPEED UP!", Color.yellow)
 		2:
 			Globals.player_scene.damage += 1
+			Globals.player_scene.show_banner("DAMAGE UP!", Color.orange)
 		3:
 			Globals.player_scene.movement_speed += Globals.player_scene.BASE_MOVEMENT_SPEED * .2
+			Globals.player_scene.show_banner("MOVEMENT SPEED UP!", Color.white)
 		4:
 			Globals.player_scene.knockback += Globals.player_scene.BASE_KNOCKBACK * .2
+			Globals.player_scene.show_banner("KNOCKBACK UP!", Color.chartreuse)
 		5:
+			Globals.player_scene.show_banner("iFRAMES UP!", Color.purple)
 			Globals.player_scene.i_frames += 50
