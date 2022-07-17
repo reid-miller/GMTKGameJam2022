@@ -57,6 +57,7 @@ func _on_Player_player_died():
 func reset():
 	Globals.enemies_left = 0
 	Globals.lap = 0
+	print_debug("Presed")
 	get_tree().change_scene("res://scenes/Title_Screen.tscn")
 
 

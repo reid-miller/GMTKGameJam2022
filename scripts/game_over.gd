@@ -4,7 +4,8 @@ func _ready():
 	pass
 
 func game_over():
-	$RichTextLabel.text += str(Globals.lap)
+	$Laps.text = 'Completed Laps: ' + str(Globals.lap)
+	Globals.board.zoom_out()
 	show()
 	
 func _on_Button_button_up():

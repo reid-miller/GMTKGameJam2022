@@ -165,10 +165,6 @@ scale = Vector2( 0.6, 0.6 )
 
 [node name="game_over" parent="." instance=ExtResource( 8 )]
 visible = false
-margin_left = 281.437
-margin_top = 107.186
-margin_right = 321.437
-margin_bottom = 147.186
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
