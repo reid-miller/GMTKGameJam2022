@@ -41,8 +41,10 @@ func new_room(child_idx):
 func change_tile(tile_num):
 	$Squares.get_child(tile_num).shuffle_square()
 
-func zoom_in():
+func zoom_in(pos):
 	$AnimationPlayer.play("zoom_in")
+	new_room(pos)
+	
 func zoom_out():
 	$AnimationPlayer.play("zoom_out")
 	
