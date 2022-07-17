@@ -14,5 +14,5 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="HitboxCollider"]
 position = Vector2( -5, 0 )
 frames = ExtResource( 2 )
-frame = 3
+frame = 9
 playing = true
