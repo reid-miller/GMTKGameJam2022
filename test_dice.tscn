@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/wall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/dice_roller.tscn" type="PackedScene" id=4]
+
+[node name="test_dice" type="Node2D"]
+
+[node name="wall" parent="." instance=ExtResource( 2 )]
+position = Vector2( 306, 311 )
+
+[node name="wall2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 254, -16 )
+
+[node name="wall3" parent="." instance=ExtResource( 2 )]
+position = Vector2( -14, 56 )
+rotation = -1.58476
+
+[node name="wall4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 499, 76 )
+rotation = -1.58476
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 262, 172 )
+
+[node name="dice_roller" parent="." instance=ExtResource( 4 )]
+position = Vector2( 268, 113 )

@@ -66,7 +66,7 @@ func _physics_process(delta: float) -> void:
 	anim_tree["parameters/swing_1/TimeScale/scale"] = attack_speed
 	anim_tree["parameters/swing_2/TimeScale/scale"] = attack_speed
 	anim_tree["parameters/shoot/TimeScale/scale"] = attack_speed
-	print("\nDAMGE " + str(damage) + "\nHEALTH " + str(health) + "\nATK SPEED " + str(attack_speed) + "\nMVMNT SPEED " + str(movement_speed) + "\nKNOCKBACK" + str(knockback))
+	#print("\nDAMGE " + str(damage) + "\nHEALTH " + str(health) + "\nATK SPEED " + str(attack_speed) + "\nMVMNT SPEED " + str(movement_speed) + "\nKNOCKBACK" + str(knockback))
 func _handle_player_animations():
 	
 	# Movement
