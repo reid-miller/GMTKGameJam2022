@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GMTKGameJam2022"
-run/main_scene="res://scenes/Player.tscn"
+run/main_scene="res://scenes/Title_Screen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
