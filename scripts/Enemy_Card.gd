@@ -13,6 +13,7 @@ func _ready() -> void:
 	blink_timer.wait_time = blink_interval
 	blink_timer.connect("timeout", self, "_blink")
 	blink_timer.start()
+	_determine_level()
 
 func _determine_level():
 	if lap == 1:

@@ -1,66 +1,67 @@
 extends Enemy
 
-onready var enemy_sprite: AnimatedSprite = $CoinBodySprite
-onready var lap = Globals.lap
-var death_timer: Timer
-var anim
-var death_interval = 1
-var startTime: bool = false
+onready var front_sprite: AnimatedSprite = $BodySprite
+onready var ass_sprite: AnimatedSprite = $AssSprite
+var lap = Globals.lap
+var dashing: bool = false
+# Animation Variables
+var dash_interval: float = 5
+var dash_duration: float = 2
+var dash_timer: Timer = Timer.new()
+var dash_end_timer: Timer = Timer.new()
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
+	add_child(dash_timer)
+	dash_timer.wait_time = dash_interval
+	dash_timer.connect("timeout", self, "_dash")
+	dash_timer.one_shot = true
+	dash_timer.start()
+	add_child(dash_end_timer)
+	dash_end_timer.one_shot = true
+	dash_end_timer.connect("timeout", self, "_end_dash")
 	_determine_level()
-	death_timer = Timer.new()
-	add_child(death_timer)
-	death_timer.wait_time = death_interval
-	death_timer.connect("timeout", self, "_death")
-	if dir != Vector2.ZERO:
-		enemy_sprite.playing = true
+	speed = 10 + (lap)
 
-	
 func _physics_process(delta: float) -> void:
-	_animation_and_rotation()
-	_handle_death()
+	if global_position.y - Globals.player_scene.global_position.y < -10:
+		front_sprite.visible = true
+		ass_sprite.visible = false
+	elif global_position.y - Globals.player_scene.global_position.y > 10:
+		front_sprite.visible = false
+		ass_sprite.visible = true
 
-func _animation_and_rotation():
-	var pos = player.global_position - global_position
-	
-	# Handle butt animation
-	if pos.x > 0 and pos.y < 0:
-		enemy_sprite.animation = anim + "Butt"
+
+	# Dash
+	if dashing:
+		rotation_degrees += speed * sign(velocity.x)
 	else:
-		enemy_sprite.animation = anim
-		
-	# Change rotation direction
-	if pos.x > 0:
-		enemy_sprite.rotation += .08
-	else:
-		enemy_sprite.rotation -= .08
+		rotation_degrees = 0
 	
+	# moving
+	velocity = (Globals.player_scene.global_position - global_position).normalized() * speed
+	move_and_slide(velocity)
 
 func _determine_level():
 	if lap == 1:
-		enemy_sprite.animation = "Penny"
+		front_sprite.animation = "penny"
+		ass_sprite.animation = "penny"
 	elif lap == 2:
-		enemy_sprite.animation = "Nickle"
+		front_sprite.animation = "nickel"
+		ass_sprite.animation = "nickel"
 	elif lap == 3:
-		enemy_sprite.animation = "Dime"
+		front_sprite.animation = "dime"
+		ass_sprite.animation = "dime"
 	elif lap >= 4:
-		enemy_sprite.animation = "Quarter"
-	anim = enemy_sprite.animation
+		front_sprite.animation = "quarter"
+		ass_sprite.animation = "quarter"
 
-
-func _handle_death():
-	if health <= 0:
-		enemy_sprite.modulate = Color(1,0,0)
-		if enemy_sprite.rotation < 0:
-			enemy_sprite.rotation -= .2
-		else:
-			enemy_sprite.rotation += .2
-		if !startTime:
-			death_timer.start()
-			startTime = true
-
-func _death():
-	Globals.player_scene._update_ammo_counter(1)
-	queue_free()
+func _dash():
+	dashing = true
+	speed = speed * 5
+	dash_end_timer.start()
+	
+func _end_dash():
+	rotation_degrees = 0
+	dashing = false
+	speed = speed / 5
+	dash_timer.start()
