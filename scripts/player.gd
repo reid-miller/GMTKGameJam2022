@@ -129,7 +129,6 @@ func _handle_weapon_animations() -> void:
 	# Shooting
 	elif can_shoot and Input.is_action_pressed("shoot") and animation_tree.get_current_node() == "weapon_bob" and ammo > 0:
 		animation_tree.travel("shoot")
-		green_tile_effect()
 	elif Input.is_action_pressed("shoot") and ammo <= 0:
 		_update_ammo_counter(0)
 	if animation_tree.get_current_node() == "shoot":
