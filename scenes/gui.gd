@@ -14,6 +14,7 @@ func _ready():
 
 
 func _process(delta):
+	$RichTextLabel.text = "Loops: " + str(Globals.lap)
 	$AnimatedSprite.frame = Globals.player_scene.health
 	if past_health != Globals.player_scene.health:
 		past_health = Globals.player_scene.health
