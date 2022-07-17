@@ -20,4 +20,4 @@ func game_over():
 #	pass
 
 func _on_Button_button_up():
-	Globals.board.game_over()
+	Globals.board.reset()

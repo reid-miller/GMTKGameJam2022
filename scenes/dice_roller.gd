@@ -7,19 +7,8 @@ func _ready():
 	hide()
 
 
-#func _process(delta):
-#	pass
-
-# Check if any enemys are in room
-func check_room(from_enemy):
-	if from_enemy:
-		if get_tree().get_nodes_in_group('enemy').size() - 1 == 0:
-			floor_cleared()
-
-	else: 
-		if get_tree().get_nodes_in_group('enemy').size() == 0:
-			floor_cleared()
-
+func _process(delta):
+	pass
 
 		
 func floor_cleared():
