@@ -4,22 +4,22 @@
 animations = [ {
 "frames": [  ],
 "loop": true,
-"name": "Dime",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
 "name": "Quarter",
 "speed": 5.0
 }, {
 "frames": [  ],
 "loop": true,
-"name": "Nickle",
+"name": "Penny",
 "speed": 5.0
 }, {
 "frames": [  ],
 "loop": true,
-"name": "Penny",
+"name": "Dime",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "Nickle",
 "speed": 5.0
 } ]
 
