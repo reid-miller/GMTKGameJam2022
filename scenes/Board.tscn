@@ -190,4 +190,8 @@ margin_right = 128.144
 margin_bottom = 71.8563
 rect_scale = Vector2( 0.6, 0.6 )
 
+[node name="green_timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="player_died" from="Player" to="." method="_on_Player_player_died"]
+[connection signal="timeout" from="green_timer" to="." method="_on_green_timer_timeout"]
