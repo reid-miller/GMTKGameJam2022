@@ -28,18 +28,8 @@ func _physics_process(delta):
 			knockback_vector -= knockback_vector.normalized() * knockback_decay
 	
 	# Check if dead
-<<<<<<< Updated upstream
-	if health <= 0:
-=======
 	if health <= 0 and !dead:
 		dead = true
-		Globals.dice_roller.check_room(true)
->>>>>>> Stashed changes
+		Globals.dicwe_roller.check_room(true)
 		#queue_free()
 		speed = 0
-
-
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

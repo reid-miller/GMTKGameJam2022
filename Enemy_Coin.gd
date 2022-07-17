@@ -59,4 +59,5 @@ func _handle_death():
 		death_timer.start()
 
 func _death():
+	Globals.player_scene._update_ammo_counter(1)
 	queue_free()
