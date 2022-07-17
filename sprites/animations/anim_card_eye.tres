@@ -5,16 +5,16 @@
 [ext_resource path="res://sprites/Cards/queen card eye.png" type="Texture" id=3]
 [ext_resource path="res://sprites/Cards/king eye.png" type="Texture" id=4]
 
-[sub_resource type="AtlasTexture" id=54]
-atlas = ExtResource( 4 )
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 2 )
 region = Rect2( 64, 0, 32, 55 )
 
-[sub_resource type="AtlasTexture" id=55]
-atlas = ExtResource( 4 )
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 2 )
 region = Rect2( 32, 0, 32, 55 )
 
-[sub_resource type="AtlasTexture" id=56]
-atlas = ExtResource( 4 )
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 32, 55 )
 
 [sub_resource type="AtlasTexture" id=18]
@@ -29,18 +29,6 @@ region = Rect2( 32, 0, 32, 55 )
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 32, 55 )
 
-[sub_resource type="AtlasTexture" id=51]
-atlas = ExtResource( 2 )
-region = Rect2( 64, 0, 32, 55 )
-
-[sub_resource type="AtlasTexture" id=50]
-atlas = ExtResource( 2 )
-region = Rect2( 32, 0, 32, 55 )
-
-[sub_resource type="AtlasTexture" id=49]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 32, 55 )
-
 [sub_resource type="AtlasTexture" id=32]
 atlas = ExtResource( 3 )
 region = Rect2( 64, 0, 32, 55 )
@@ -53,11 +41,23 @@ region = Rect2( 32, 0, 32, 55 )
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 32, 55 )
 
+[sub_resource type="AtlasTexture" id=54]
+atlas = ExtResource( 4 )
+region = Rect2( 64, 0, 32, 55 )
+
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 0, 32, 55 )
+
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 55 )
+
 [resource]
 animations = [ {
-"frames": [ SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 55 ), SubResource( 54 ) ],
+"frames": [ SubResource( 51 ), SubResource( 50 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ) ],
 "loop": false,
-"name": "King",
+"name": "Ace",
 "speed": 10.0
 }, {
 "frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 19 ), SubResource( 18 ) ],
@@ -65,13 +65,13 @@ animations = [ {
 "name": "Jack",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 51 ), SubResource( 50 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ) ],
-"loop": false,
-"name": "Ace",
-"speed": 10.0
-}, {
 "frames": [ SubResource( 32 ), SubResource( 31 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ) ],
 "loop": false,
 "name": "Queen",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 55 ), SubResource( 54 ) ],
+"loop": false,
+"name": "King",
 "speed": 10.0
 } ]

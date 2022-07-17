@@ -43,7 +43,7 @@ var can_attack: bool = true
 var can_shoot: bool = true
 var remaining_iframes: int = 0
 var ammo: int = 3
-var label_alpha = 1.5
+var label_alpha = 0
 # Signals
 signal player_died
 signal player_damaged
@@ -163,6 +163,13 @@ func _handle_player_damage(area: Node):
 		health -= 1
 		if health <= 0:
 			emit_signal("player_died")
+			can_move = false
+			can_attack = false
+			weapon.visible = false
+			body_sprite.playing = false
+			if can_shoot:
+				animation_player.play("death")
+				can_shoot = false
 		else:
 			remaining_iframes = i_frames
 
