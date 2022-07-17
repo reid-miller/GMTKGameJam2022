@@ -19,17 +19,18 @@ func shuffle_square():
 func change_square():
 	$AnimatedSprite.stop()
 	rng.randomize()
-	var rand_num = rng.randi_range(1, 6)
+	var rand_num = rng.randi_range(1, 100)
 	print_debug(rand_num)
 	# Red
-	if 0 < rand_num and rand_num < 4:
+	if 0 < rand_num and rand_num < 80:
 		$AnimatedSprite.set_frame(0)
 		color = 0
 	# Green
-	elif 4 < rand_num and rand_num > 5:
+	elif 80 < rand_num and rand_num > 90:
 		$AnimatedSprite.set_frame(1)
 		color = 1
 	else:
+		
 		$AnimatedSprite.set_frame(2)
 		color = 2
 	

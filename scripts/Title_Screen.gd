@@ -24,3 +24,7 @@ func _on_Maximize_button_up():
 
 func _on_ExitButton_button_up():
 	get_tree().quit()
+
+
+func _on_CreditsButton_button_up():
+	get_tree().change_scene("res://meet_the_team.tscn")
