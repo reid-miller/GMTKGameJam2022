@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/144327__jpolito__holyshitambush.ogg-7a7bf79b1ed72798e684e13e113aa232.oggstr"
+
+[deps]
+
+source_file="res://sounds/144327__jpolito__holyshitambush.ogg"
+dest_files=[ "res://.import/144327__jpolito__holyshitambush.ogg-7a7bf79b1ed72798e684e13e113aa232.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
