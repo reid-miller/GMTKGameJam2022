@@ -1,12 +1,16 @@
 extends Control
 
+var over = false
+
 func _ready():
 	pass
 
 func game_over():
-	$Laps.text = 'Completed Laps: ' + str(Globals.lap)
-	Globals.board.zoom_out()
-	show()
+	if !over:
+		over = true
+		$Laps.text = 'Completed Laps: ' + str(Globals.lap)
+		Globals.board.zoom_out()
+		show()
 	
 func _on_Button_button_up():
 	Globals.board.reset()
