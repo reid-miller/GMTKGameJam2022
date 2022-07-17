@@ -16,10 +16,11 @@ onready var shoot_position: Position2D = $Weapon/WeaponSprite/ShootDirection
 onready var hitboxes: Node2D = $Weapon/Hitboxes
 onready var muzzle_flash: AnimatedSprite = $Weapon/WeaponSprite/MuzzleFlash
 onready var hurtbox: Area2D = $PlayerHurtBox
+onready var ammo_counter: AnimatedSprite = $AmmoCounter
 
 # Stats
 const BASE_MOVEMENT_SPEED: float = 75.0
-const BASE_HEALTH: float = 10.0
+const BASE_HEALTH: float = 6.0
 const BASE_ATTACK_SPEED: float = 1.0
 const BASE_DAMAGE: float = 1.0
 const BASE_KNOCKBACK: float = 20.0
@@ -32,6 +33,7 @@ var i_frames: int = 100
 
 # Animation Variables
 var blink_interval: float = 6
+var ammo_counter_alpha: int = 0
 
 # Functional Variables
 var velocity: Vector2 = Vector2.ZERO
@@ -39,6 +41,7 @@ var can_move: bool = true
 var can_attack: bool = true
 var can_shoot: bool = true
 var remaining_iframes: int = 0
+var ammo: int = 3
 
 # Signals
 signal player_died
@@ -60,11 +63,10 @@ func _physics_process(delta: float) -> void:
 	_move()
 	_handle_player_animations()
 	_handle_weapon_animations()
-	
 	anim_tree["parameters/swing_1/TimeScale/scale"] = attack_speed
 	anim_tree["parameters/swing_2/TimeScale/scale"] = attack_speed
 	anim_tree["parameters/shoot/TimeScale/scale"] = attack_speed
-
+	print("\nDAMGE " + str(damage) + "\nHEALTH " + str(health) + "\nATK SPEED " + str(attack_speed) + "\nMVMNT SPEED " + str(movement_speed) + "\nKNOCKBACK" + str(knockback))
 func _handle_player_animations():
 	
 	# Movement
@@ -99,7 +101,11 @@ func _handle_player_animations():
 		visible = true
 
 func _handle_weapon_animations() -> void:
-
+	
+	# Ammo counter
+	ammo_counter_alpha = clamp(ammo_counter_alpha - 5, 0, 500)
+	ammo_counter.modulate.a = float(ammo_counter_alpha)/255.0
+	
 	# Idle
 	if animation_tree.get_current_node() == "weapon_bob":
 		weapon.scale.y = 1
@@ -113,17 +119,25 @@ func _handle_weapon_animations() -> void:
 		animation_tree.travel("swing_1")
 	
 	# Shooting
-	elif can_shoot and Input.is_action_pressed("shoot") and animation_tree.get_current_node() == "weapon_bob":
+	elif can_shoot and Input.is_action_pressed("shoot") and animation_tree.get_current_node() == "weapon_bob" and ammo > 0:
 		animation_tree.travel("shoot")
+	elif Input.is_action_pressed("shoot") and ammo <= 0:
+		_update_ammo_counter(0)
 	if animation_tree.get_current_node() == "shoot":
 		weapon.look_at(get_viewport().get_mouse_position())
 		if get_viewport().get_mouse_position().x < global_position.x:
 				weapon.scale.y = -1
-				
+	
+	
 	if muzzle_flash.frame >= 5:
 		muzzle_flash.playing = false
 		muzzle_flash.frame = 0
 
+func _update_ammo_counter(amount: int):
+	ammo = clamp(ammo + amount, 0, 3)
+	ammo_counter.frame = ammo
+	ammo_counter_alpha = 500
+	
 
 func _check_for_combo():
 	if Input.is_action_pressed("attack"):
@@ -179,4 +193,5 @@ func _spawn_bullet():
 	bullet.knockback = knockback
 	bullet.velocity = get_viewport().get_mouse_position() - position
 	add_child(bullet)
+	_update_ammo_counter(-1)
 	

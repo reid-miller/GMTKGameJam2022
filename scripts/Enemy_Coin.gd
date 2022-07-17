@@ -2,12 +2,18 @@ extends Enemy
 
 onready var enemy_sprite: AnimatedSprite = $CoinBodySprite
 onready var lap = Globals.lap
+var death_timer: Timer
 var anim
 var death_interval = 1
+var startTime: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_determine_level()
+	death_timer = Timer.new()
+	add_child(death_timer)
+	death_timer.wait_time = death_interval
+	death_timer.connect("timeout", self, "_death")
 	if dir != Vector2.ZERO:
 		enemy_sprite.playing = true
 
@@ -45,18 +51,16 @@ func _determine_level():
 
 
 func _handle_death():
-	var death_timer: Timer = Timer.new()
-	add_child(death_timer)
-	death_timer.wait_time = death_interval
-	death_timer.connect("timeout", self, "_death")
-	
 	if health <= 0:
 		enemy_sprite.modulate = Color(1,0,0)
 		if enemy_sprite.rotation < 0:
 			enemy_sprite.rotation -= .2
 		else:
 			enemy_sprite.rotation += .2
-		death_timer.start()
+		if !startTime:
+			death_timer.start()
+			startTime = true
 
 func _death():
+	Globals.player_scene._update_ammo_counter(1)
 	queue_free()
