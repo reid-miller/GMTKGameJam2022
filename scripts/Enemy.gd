@@ -22,7 +22,7 @@ func _ready():
 	
 	# Determine Power
 	var power = Globals.lap
-	health = 5 + power
+	health = 2 + power
 	speed = 40 + (power*5)
 	damage = 3 + floor(power/2)
 	_determine_sprite(power)

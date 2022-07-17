@@ -1,11 +1,73 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://sprites/animations/anim_card_eye.tres" type="SpriteFrames" id=1]
-[ext_resource path="res://sprites/animations/anim_card_body.tres" type="SpriteFrames" id=2]
-[ext_resource path="res://scripts/Enemy_Card.gd" type="Script" id=3]
+[ext_resource path="res://sprites/animations/anim_coin.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://scripts/Enemy_Coin.gd" type="Script" id=2]
+[ext_resource path="res://sprites/Coins/thick nickle.png" type="Texture" id=3]
+[ext_resource path="res://sprites/Coins/thick quarter.png" type="Texture" id=4]
+[ext_resource path="res://sprites/Coins/thick penny.png" type="Texture" id=5]
+[ext_resource path="res://sprites/Coins/thick dime.png" type="Texture" id=6]
 
-[sub_resource type="RectangleShape2D" id=17]
-extents = Vector2( 13, 23.5 )
+[sub_resource type="AtlasTexture" id=62]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=63]
+atlas = ExtResource( 6 )
+region = Rect2( 32, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=64]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=65]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=66]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=67]
+atlas = ExtResource( 5 )
+region = Rect2( 32, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=68]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=69]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=70]
+atlas = ExtResource( 4 )
+region = Rect2( 64, 0, 32, 36 )
+
+[sub_resource type="SpriteFrames" id=71]
+animations = [ {
+"frames": [ SubResource( 62 ), SubResource( 63 ) ],
+"loop": true,
+"name": "dime",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 64 ), SubResource( 65 ) ],
+"loop": true,
+"name": "nickel",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 66 ), SubResource( 67 ) ],
+"loop": true,
+"name": "penny",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 69 ) ],
+"loop": true,
+"name": "quarter",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=61]
+radius = 13.0384
 
 [sub_resource type="Animation" id=57]
 resource_name = "damage"
@@ -106,24 +168,23 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="Enemy_Card" type="KinematicBody2D"]
-script = ExtResource( 3 )
+[node name="Enemy_Coin" type="KinematicBody2D"]
+script = ExtResource( 2 )
 
-[node name="CardBodySprite" type="AnimatedSprite" parent="."]
-frames = ExtResource( 2 )
-animation = "Ace"
-frame = 6
+[node name="BodySprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 1 )
+animation = "quarter"
+frame = 1
 playing = true
 
-[node name="CardEyesSprite" type="AnimatedSprite" parent="."]
-frames = ExtResource( 1 )
-animation = "Ace"
-frame = 4
+[node name="AssSprite" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 71 )
+animation = "dime"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -2 )
-shape = SubResource( 17 )
+shape = SubResource( 61 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "spawn"

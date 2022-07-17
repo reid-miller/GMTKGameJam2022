@@ -1,44 +1,38 @@
 extends Enemy
 
-onready var enemy_sprite: AnimatedSprite = $EnemyBodySprite
+onready var enemy_sprite: AnimatedSprite = $BodySprite
 var lap = Globals.lap
-var death_interval: float = 1
-var death_timer: Timer
-var startTime: bool = false
 
+# Animation Variables
+var fire_interval: float = 3
+var fire_timer: Timer = Timer.new()
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
+	add_child(fire_timer)
+	fire_timer.wait_time = fire_interval
+	fire_timer.connect("timeout", self, "_fire")
+	fire_timer.start()
 	_determine_level()
-	death_timer = Timer.new()
-	add_child(death_timer)
-	death_timer.wait_time = death_interval
-	death_timer.connect("timeout", self, "_death")
-	if dir != Vector2.ZERO:
-		enemy_sprite.playing = true
-	
-func _physics_process(delta: float) -> void:
-	_handle_death()
-	
+
 func _determine_level():
 	if lap == 1:
-		enemy_sprite.animation = "White"
+		enemy_sprite.animation = "white"
 	elif lap == 2:
-		enemy_sprite.animation = "Red"
+		enemy_sprite.animation = "green"
 	elif lap == 3:
-		enemy_sprite.animation = "Green"
+		enemy_sprite.animation = "red"
 	elif lap >= 4:
-		enemy_sprite.animation = "Blue"
+		enemy_sprite.animation = "black"
 
-func _handle_death():	
-	if health <= 0:
-		enemy_sprite.modulate = Color(1,0,0)
-		enemy_sprite.stop()
-		enemy_sprite.flip_v = true
-		if !startTime:
-			death_timer.start()
-			startTime = true
-
-func _death():
-	queue_free()
-
+func _fire():
+	var fire_type = randi() % 2
+	if fire_type == 0:
+		_spawn_projectile(Vector2(1,0), 4)
+		_spawn_projectile(Vector2(-1,0), 4)
+		_spawn_projectile(Vector2(0,1), 4)
+		_spawn_projectile(Vector2(0,-1), 4)
+	if fire_type == 1:
+		_spawn_projectile(Vector2(1,-1), 4)
+		_spawn_projectile(Vector2(1,1), 4)
+		_spawn_projectile(Vector2(-1,1), 4)
+		_spawn_projectile(Vector2(-1,-1), 4)
