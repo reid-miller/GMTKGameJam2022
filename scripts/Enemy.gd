@@ -36,9 +36,3 @@ func _physics_process(delta):
 			Globals.dice_roller.floor_cleared()
 		#queue_free()
 		speed = 0
-
-
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
