@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/Square.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player_chip.tscn" type="PackedScene" id=2]
@@ -76,10 +76,43 @@ tracks/1/keys = {
 "values": [ Vector2( 1.67, 1.67 ), Vector2( 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "fade_blck"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "swap"
+} ]
+}
+
 [node name="Board" type="Node2D"]
 position = Vector2( -212, -119 )
 scale = Vector2( 1.67, 1.67 )
 script = ExtResource( 6 )
+
+[node name="room" parent="." instance=ExtResource( 5 )]
+position = Vector2( 319, 179 )
+scale = Vector2( 0.6, 0.6 )
 
 [node name="Squares" type="Node2D" parent="."]
 
@@ -131,6 +164,7 @@ position = Vector2( 0, 144 )
 position = Vector2( 0, 72 )
 
 [node name="board_frame" type="Sprite" parent="."]
+scale = Vector2( 1, 1 )
 texture = ExtResource( 4 )
 offset = Vector2( 320, 180 )
 
@@ -151,16 +185,12 @@ rotate = false
 position = Vector2( -1, 1 )
 scale = Vector2( 1, 1 )
 
-[node name="room" parent="." instance=ExtResource( 5 )]
-position = Vector2( 319, 179 )
-scale = Vector2( 0.6, 0.6 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/zoom_in = SubResource( 2 )
 anims/zoom_out = SubResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
-position = Vector2( 220, 145 )
+position = Vector2( 320, 180 )
 scale = Vector2( 0.6, 0.6 )
 
 [node name="game_over" parent="." instance=ExtResource( 8 )]
@@ -189,5 +219,17 @@ rect_scale = Vector2( 0.6, 0.6 )
 [node name="green_timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 128.0
+margin_top = 76.0
+margin_right = 512.0
+margin_bottom = 285.0
+color = Color( 0, 0, 0, 0 )
+
+[node name="fade" type="AnimationPlayer" parent="ColorRect"]
+anims/fade_blck = SubResource( 4 )
+
+[connection signal="player_damaged" from="Player" to="gui" method="_on_Player_player_damaged"]
 [connection signal="player_died" from="Player" to="." method="_on_Player_player_died"]
 [connection signal="timeout" from="green_timer" to="." method="_on_green_timer_timeout"]
+[connection signal="animation_finished" from="ColorRect/fade" to="." method="_on_fade_animation_finished"]

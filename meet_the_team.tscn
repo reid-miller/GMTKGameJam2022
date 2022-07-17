@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://sprites/meet the team.png" type="Texture" id=1]
 [ext_resource path="res://sprites/reid!.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://sprites/evan!.png" type="Texture" id=4]
 [ext_resource path="res://sprites/kaylee!.png" type="Texture" id=5]
 [ext_resource path="res://meet_the_team.gd" type="Script" id=6]
+[ext_resource path="res://sounds/title_music.ogg" type="AudioStream" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "bob"
@@ -74,5 +75,9 @@ anims/bob = SubResource( 1 )
 [node name="to_title" type="Timer" parent="."]
 wait_time = 4.0
 one_shot = true
+
+[node name="background_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
 
 [connection signal="timeout" from="to_title" to="." method="_on_to_title_timeout"]

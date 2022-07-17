@@ -3,6 +3,7 @@ extends Node2D
 var zoom = false
 onready var room_instance = $room
 var rng = RandomNumberGenerator.new()
+var temp_pos = 0
 
 func _ready():
 	Globals.board = self
@@ -45,8 +46,8 @@ func change_tile(tile_num):
 	$Squares.get_child(tile_num).shuffle_square()
 
 func zoom_in(pos):
-	$AnimationPlayer.play("zoom_in")
-	new_room(pos)
+	temp_pos = pos
+	$ColorRect/fade.play("fade_blck")
 	
 func zoom_out():
 	$AnimationPlayer.play("zoom_out")
@@ -63,3 +64,9 @@ func reset():
 
 func _on_green_timer_timeout():
 	Globals.player_scene.green_tile_effect()
+
+	
+func swap():
+	$AnimationPlayer.play("zoom_in")
+	new_room(temp_pos)
+	Globals.player_scene.position = Vector2(320, 180)
