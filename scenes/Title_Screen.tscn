@@ -74,6 +74,7 @@ margin_bottom = 305.0
 custom_icons/grabber_disabled = ExtResource( 8 )
 custom_icons/grabber_highlight = ExtResource( 8 )
 custom_icons/grabber = ExtResource( 8 )
+value = 100.0
 
 [connection signal="button_up" from="StartButton" to="." method="_on_StartButton_button_up"]
 [connection signal="button_up" from="ExitButton" to="." method="_on_ExitButton_button_up"]
