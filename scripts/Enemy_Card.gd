@@ -9,7 +9,6 @@ var blink_interval: float = 4
 var blink_timer: Timer = Timer.new()
 
 func _ready() -> void:
-	._ready()
 	add_child(blink_timer)
 	blink_timer.wait_time = blink_interval
 	blink_timer.connect("timeout", self, "_blink")

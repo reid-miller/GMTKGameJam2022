@@ -39,6 +39,8 @@ func _ready():
 	
 	# Increase number of enemies
 	Globals.enemies_left += 1
+	print_debug("Enemy made, total = " + str(Globals.enemies_left))
+	print_debug(self)
 	
 func _start_movement():
 	velocity = Vector2(rand_range(-1, 1), rand_range(-1, 1))
@@ -71,6 +73,7 @@ func _physics_process(delta):
 		Globals.player_scene._update_ammo_counter(1)
 		Globals.enemies_left -= 1
 		animator.play("death")
-#		if Globals.enemies_left == 0:
-#			Globals.dice_roller.floor_cleared()
+		print_debug('Enemies left: ' + str(Globals.enemies_left))
+		if Globals.enemies_left == 0:
+			Globals.dice_roller.floor_cleared()
 	
